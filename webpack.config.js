@@ -20,9 +20,12 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    extensions: [ '', '.js','.jsx']
+  },
   module: {
     loaders: [
-      {test: /\.jsX?$/, exclude: /node_modules/, loaders: ['babel']},
+      {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['babel']},
       {test: /\.css$/, loaders: ['style','css']}
     ]
   }
