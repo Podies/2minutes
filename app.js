@@ -4,11 +4,23 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var webpack = require('webpack');
+var config = require('./webpack.config');
+var compiler = webpack(config);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+/* eslint-disable */
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
+/* eslint-enable */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
