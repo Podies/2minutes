@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Header from './components/Header';
-
+import Landing from './components/Landing';
+require('../public/stylesheets/client.scss');
 render(
-    <Header />
+    <Landing />
   , document.getElementById('app')
   );

@@ -14,5 +14,5 @@
     "no-mixed-requires": [0],
     "no-underscore-dangle": [0]
   },
-  "extends": "airbnb"
+  "extends": "eslint:recommended"
 }
