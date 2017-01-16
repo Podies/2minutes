@@ -1,8 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Landing from './components/Landing';
-require('../public/stylesheets/client.scss');
+import routes from './routes';
+import { Router, browserHistory } from 'react-router';
+
+//Import css
+import '../public/stylesheets/client.scss';
+
 render(
-    <Landing />
+    <Router children={routes} history={browserHistory} />
   , document.getElementById('app')
   );
