@@ -5,7 +5,29 @@ $color-2: #093bad;
 $color-3: #4a97e5;
 $color-4: #cecfcf;
 $color-5: #d1dfee;
+$border-radius: 4px;
 
+@mixin boxshadow($color) {
+	box-shadow: 0px 0px 100px rgba($color, 0.6);
+}
+
+@mixin button ($bg_color, $txt-color){
+	padding: 1em;
+	text-decoration: none;
+	background-color: $bg_color;
+	color: $txt-color;
+	border: 2px solid $txt-color;
+	text-transform: uppercase;
+	font-family: 'Montserrat', 'Open Sans';
+	letter-spacing: 0.1em;
+	border-radius: 4px;
+	transition: background-color 300ms ease-in;
+	&:hover {
+     color: $bg_color;
+     background-color: $txt-color;
+     border: 2px solid $bg_color;
+	}
+}
 
 body {
 	margin: 0;
@@ -18,7 +40,83 @@ body {
 }
 
 .logo-sec {
+	text-align: left;
 	img {
 		width: 90%;
 	}
+}
+
+.hero-sec {
+	height: 500px;
+	background-color: $color-1;
+}
+
+.illustration001 {
+	height: 100px;
+	padding-top: 80px;
+}
+
+.get-started-btn {
+	text-align: center;
+	.get-started {
+		@include button($color-1, white);
+		margin: 0 auto;
+	}
+}
+
+.signuploginmodal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+	padding: 40px;
+	background-color: white;
+	margin: 0 auto;
+	border-radius: $border-radius;
+	@include boxshadow(black);
+}
+
+.list-tabs {
+	position: relative;
+	text-align: center;
+	border-bottom: 1px solid $color-2;
+	padding: 1em 0;
+	li {
+		display: inline;
+		a {
+			@include button(white,$color-1);
+		}
+	}
+	.close-btn {
+		position: absolute;
+    right: 0;
+    top: 0;
+	}
+}
+
+.signup-sec p, .login-sec p {
+	text-align: center;
+	margin: 1em 0;
+}
+
+.signupopt1, .signupopt2 {
+	text-align: center;
+	margin: 1em 0 1em 0;
+}
+
+.signupopt1 a {
+	@include button(white, red );
+}
+
+.signupopt2 a {
+	@include button(white, blue );
 }
