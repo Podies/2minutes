@@ -4,14 +4,17 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  
   render() {
     return (
       <div>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
+
+App.propTypes = {
+  children: React.PropTypes.node,
+};
 
 export default App;
