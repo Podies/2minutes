@@ -33,12 +33,12 @@ const Loginmodal = () => {
    			 <fieldset className="">
    			 <div className="col-xs-12">
      			 <div className="col signupopt1">
-     			   <a href="#" className="">Log in With Google</a>
+     			   <a href="/auth/google" className="">Log in With Google</a>
      			 </div>
    			 </div>
    			 <div className="col-xs-12">
      			 <div className="col signupopt2">
-     			  <a href="#" className="">log in With Facebook</a>
+     			  <a href="/auth/facebook" className="">log in With Facebook</a>
      			 </div>
    			 </div>
    			 </fieldset>

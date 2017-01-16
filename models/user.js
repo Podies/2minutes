@@ -7,10 +7,14 @@ const userSchema = Schema({
   name: String,
   password: String,
   facebook: {
-
+    id: String, default: '',
+    token: String,
+    name: String
   },
   google: {
-
+    id: String, default: '',
+    token: String,
+    name: String
   },
   setId:{type: Schema.Types.ObjectId, ref: 'QuestionSet'},
   resultId: {type: Schema.Types.ObjectId, ref: 'Result'}
