@@ -1,0 +1,24 @@
+@import "./_grid.scss";
+
+$color-1: #006ad9;
+$color-2: #093bad;
+$color-3: #4a97e5;
+$color-4: #cecfcf;
+$color-5: #d1dfee;
+
+
+body {
+	margin: 0;
+}
+
+.extended-header {
+	position: fixed;
+	width: 100%;
+	background-color: $color-1;
+}
+
+.logo-sec {
+	img {
+		width: 90%;
+	}
+}
