@@ -2,23 +2,9 @@ import React from 'react';
 
 const Header = () => {
   return (
-  	<div className="extended-header">
-	  	<div className="grid">
-	  	  <div className="row">
-			    <div className="col-xs-12">
-			      <header>
-			        <div className="col-xs-2">
-			          <div className="col">
-			            <div className="logo-sec">
-					          <img src="../images/2-Minutes-Logo.svg"/>
-					        </div>
-				        </div>
-			        </div>
-			      </header> 
-			    </div>
-			  </div>
-			</div>
-	  </div>
+    <div>
+      <h1>Hello from header!!</h1>
+    </div>
   )
 }
 
