@@ -1,8 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Header from './components/Header';
+import routes from './routes';
+import { Router, browserHistory } from 'react-router';
+
+//Import css
+import '../public/stylesheets/client.scss';
 
 render(
-    <Header />
+    <Router children={routes} history={browserHistory} />
   , document.getElementById('app')
   );
