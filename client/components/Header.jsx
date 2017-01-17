@@ -1,5 +1,6 @@
 import React from 'react';
 import Signupbutton from './Signupbutton';
+import Accountinfo from './Accountinfo';
 
 const Header = () => {
   return (
@@ -15,7 +16,8 @@ const Header = () => {
 					        </div>
 				        </div>
 			        </div>
-			        <Signupbutton />
+			        <Accountinfo />
+			      {/*<Signupbutton />*/}
 			      </header> 
 			    </div>
 			  </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Accountinfo = () => {
 	return (
-	  <div className="col-xs-4">
+	  <div className="col-xs-10">
 	    <div className="col">
 	      <div className="account-info">
 	       <div className="user-name">
