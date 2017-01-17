@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Calendar from './Calendar';
+import Questions from './Questions';
 
 const Dashboard = () => {
 	return (
@@ -21,7 +22,8 @@ const Dashboard = () => {
 		    	    <div className="col-xs-8">
 		    	    </div>
 		    	  </div>
-            <Calendar />
+		    	  <Questions />
+            {/*<Calendar />*/}
 	    	  </div>
     	  </div>
     	</div>
