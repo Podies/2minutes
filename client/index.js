@@ -7,6 +7,6 @@ import { Router, browserHistory } from 'react-router';
 import '../public/stylesheets/client.scss';
 
 render(
-    <Router children={routes} history={browserHistory} />
+    <Router routes={routes} history={browserHistory} />
   , document.getElementById('app')
   );
