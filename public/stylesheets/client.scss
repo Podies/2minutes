@@ -31,6 +31,7 @@ $border-radius: 4px;
 
 body {
 	margin: 0;
+	font-family:'Montserrat', 'Open Sans';
 }
 
 .extended-header {
@@ -39,10 +40,15 @@ body {
 	background-color: $color-1;
 }
 
+header {
+	display: flex;
+	align-items: center;
+}
+
 .logo-sec {
 	text-align: left;
 	img {
-		width: 90%;
+		width: 70%;
 	}
 }
 
@@ -57,10 +63,10 @@ body {
 }
 
 .get-started-btn {
-	text-align: center;
+	display: flex;
+	justify-content: flex-end;
 	.get-started {
 		@include button($color-1, white);
-		margin: 0 auto;
 	}
 }
 
@@ -119,4 +125,27 @@ body {
 
 .signupopt2 a {
 	@include button(white, blue );
+}
+
+.account-info {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.profile-img {
+	width: 40px;
+	height: 40px;
+	margin-left: 20px;
+	img {
+		width: 100%;
+		height: 100%;
+	  border-radius: 50%;
+  }
+}
+
+.user-name {
+	p {
+   color:white;
+	}
 }
