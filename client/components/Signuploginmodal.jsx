@@ -16,7 +16,7 @@ const Signuploginmodal = () => {
             <li><a href="#">Sign Up</a></li>
             <li><a href="#">Log In</a></li>
            </ul>
-           <a href="" className="close-btn">✖</a>
+           <span className="close-btn">✖</span>
           </div>
           	<Loginmodal />
           	{/* <Signupmodal /> */}
