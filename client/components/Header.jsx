@@ -1,4 +1,5 @@
 import React from 'react';
+import Signupbutton from './Signupbutton';
 
 const Header = () => {
   return (
@@ -14,6 +15,7 @@ const Header = () => {
 					        </div>
 				        </div>
 			        </div>
+			        <Signupbutton />
 			      </header> 
 			    </div>
 			  </div>
