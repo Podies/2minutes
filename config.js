@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-config.js
-=======
 module.exports = {
   "facebookAuth": {
     "clientId": "239012073206255",
@@ -13,4 +10,3 @@ module.exports = {
     "callbackURL": "http://localhost:3030/auth/google/callback"
   }
 }
->>>>>>> development
