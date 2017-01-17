@@ -23,11 +23,6 @@ const Landing = () => {
 		                </p>
 		              </div>
 	              </div>
-	              <div className="col-xs-12">
-	               <div className="col get-started-btn">
-	                <a href="#" className="get-started">Get Started</a>
-	               </div>
-	              </div>
 	            </div>
 	            <div className="col-xs-6">
 	            </div>
