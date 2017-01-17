@@ -42,7 +42,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //session Middleware
 app.use(session({
   secret: 'keyboard cat',

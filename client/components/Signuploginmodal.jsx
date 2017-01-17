@@ -2,7 +2,6 @@ import React from 'react';
 import Loginmodal from './Loginmodal';
 import Signupmodal from './Signupmodal';
 
-
 const Signuploginmodal = (props) => {
 	return (
 		<div className="signuploginmodal">
