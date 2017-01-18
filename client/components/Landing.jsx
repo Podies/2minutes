@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
-import Signuploginmodal from './Signuploginmodal';
-
 
 const Landing = () => {
 	return (
@@ -25,16 +23,15 @@ const Landing = () => {
 		                <p className="hero-description">Lorem ipsum Sed pariatur nulla dolore ex Duis non nostrud voluptate est laboris elit id officia dolor in velit cillum qui dolor exercitation consequat nostrud id nostrud voluptate tempor.
 		                </p>
 		              </div>
-	              </div>
-	            </div>
-	            <div className="col-xs-6">
-	            </div>
-		        </div>
-		      </div>
-		    </div>
+		            </div>
+		            <div className="col-xs-6">
+		            </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
 		  </div>
-		  <Signuploginmodal />
-	  </div>
+		</div>
 	);
 }
 

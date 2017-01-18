@@ -1,29 +1,29 @@
 import React from 'react';
 
-const Signupmodal = () => {
+const SignupInput = () => {
 	return(
     <div className="col-xs-12 signup-sec">
    		<div className="signup-form">
-   			<form>
+   			<form method="post" action="/users/signup">
    			 <fieldset className="">
      			 <div className="col-xs-6">
 	     			 <div className="col">
 	     			  <label>First Name
-	     			   <input type="text" name="first-name" />
+	     			   <input type="text" name="name" />
 	     			  </label>
 	     			 </div>
      			 </div>
      			 <div className="col-xs-6">
-	     			 <div className="col">
-	     			  <label>Last-name
-	     			   <input type="text" name="last-name" />
-	     			  </label>
-     			   </div>
-   			   </div>
+             <div className="col">
+              <label>Last-name
+               <input type="text" name="last-name" />
+              </label>
+             </div>
+           </div>
    			   <div className="col-xs-12">
      			   <div className="col">
 	     			  <label>Email ID
-	     			   <input type="email" name="email-address" />
+	     			   <input type="email" name="email" />
 	     			  </label>
      			   </div>
    			   </div>
@@ -46,12 +46,12 @@ const Signupmodal = () => {
    			 <fieldset className="">
    			 <div className="col-xs-12">
      			 <div className="col signupopt1">
-     			   <a href="#" className="">Signup With Google</a>
+     			   <a href="/auth/google" className="">Signup With Google</a>
      			 </div>
    			 </div>
    			 <div className="col-xs-12">
      			 <div className="col signupopt2">
-     			  <a href="#" className="">Signup With Facebook</a>
+     			  <a href="/auth/google" className="">Signup With Facebook</a>
      			 </div>
    			 </div>
    			 </fieldset>
@@ -61,4 +61,4 @@ const Signupmodal = () => {
 	)
 }
 
-export default Signupmodal;
+export default SignupInput;

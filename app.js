@@ -12,6 +12,7 @@ var passport = require('passport');
 var session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb://localhost:27017/2minutes', function(err, connected) {
     console.log(err, "Mongo connected");
 });
@@ -58,6 +59,10 @@ var passportService = require('./auth/passport')(passport);
 // Route handler
 app.use('/', routes);
 app.use('/users', users);
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
