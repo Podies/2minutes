@@ -24,11 +24,19 @@ const LoginInput = () => {
    			   </div>
    			  <div className="col-xs-12">
      			  <div className="col">
-	     			  <label>Password
+	     			  <label className="password">Password
 	     			   <input type="password" name="password" />
+               <a href="#" className="forgot-password">Forgot Password ?</a>
 	     			  </label>
      			  </div>
    			  </div>
+          <div className="col-xs-12">
+            <div className="col">
+              <label>
+               <input type="checkbox"/> Keep me logged in.
+              </label>
+            </div>
+          </div>
    			  <div className="col-xs-12">
      			  <div className="col">
 	     			  <label>
@@ -46,7 +54,7 @@ const LoginInput = () => {
    			 </div>
    			 <div className="col-xs-12">
      			 <div className="col signupopt2">
-     			  <a href="/auth/facebook" className="">log in With Facebook</a>
+     			  <a href="/auth/facebook" className="">Log in With Facebook</a>
      			 </div>
    			 </div>
    			 </fieldset>
