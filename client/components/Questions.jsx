@@ -24,19 +24,8 @@ const Questions = () => {
 			  <div className="col-xs-8">
 				  <div className="all-questions">
 				    <div className="question-sec">
-				      <div className="col">
-				        <p className="question">Talk to family members every week.</p>
-				        <p className="delete">Delete this question.</p>
-				        <Questaddon />
-				        {/*<DailyReview />*/}
-				      </div>
+				      <Questaddon />
 				      {/*<CheckedReview />*/}
-				    </div>
-				    <div className="question-sec">
-				      <div className="col">
-				        <p className="question">Talk to family members every week.</p>
-				        <p className="delete">Delete this question.</p>
-				      </div>
 				    </div>
 				    <div className="add-ques-btn">
 					    <span>✚</span>
