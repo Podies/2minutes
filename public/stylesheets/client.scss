@@ -1,48 +1,62 @@
 @import "./_grid.scss";
 
-$color-1: #006ad9;
-$color-2: #093bad;
-$color-3: #4a97e5;
-$color-4: #cecfcf;
+$color-1: #30343c;
+$color-2: #8e8aa0;
+$color-3: #E04E5B;
+$color-4: #f1f2f5;
 $color-5: #d1dfee;
+$color-6: #49c349;
 $border-radius: 4px;
+$line-height: 1.4em;
 
 @mixin boxshadow($color) {
 	box-shadow: 0px 0px 100px rgba($color, 0.6);
 }
 
 @mixin button ($bg_color, $txt-color){
-	padding: 1em;
+	padding:0.8em 1em;
 	text-decoration: none;
 	background-color: $bg_color;
 	color: $txt-color;
-	border: 2px solid $txt-color;
-	text-transform: uppercase;
-	font-family: 'Montserrat', 'Open Sans';
+	font-family: 'Montserrat', 'Source Sans Pro';
 	letter-spacing: 0.1em;
-	border-radius: 4px;
+	border-radius: $border-radius;
+	-webkit-transition: background-color 300ms ease-in;
 	transition: background-color 300ms ease-in;
 	&:hover {
      color: $bg_color;
      background-color: $txt-color;
-     border: 2px solid $bg_color;
 	}
+}
+
+@mixin navtab ($bg_color, $txt_color) {
+	padding: 1em;
+	background-color: $bg_color;
+	color: $txt_color;
+	border-radius: 4px 4px 0 0;
+	text-decoration: none;
+
 }
 
 body {
 	margin: 0;
-	font-family:'Montserrat', 'Open Sans';
+	font-family: 'Source Sans Pro';
 }
 
 .extended-header {
+	z-index: 5;
 	position: fixed;
 	width: 100%;
 	background-color: $color-1;
 }
 
 header {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .logo-sec {
@@ -53,20 +67,39 @@ header {
 }
 
 .hero-sec {
-	height: 500px;
+	height: 700px;
 	background-color: $color-1;
 }
 
+.hero-heading {
+		font-family: 'Montserrat';
+		text-align: center;
+		color: $color-3;
+		font-size: 1.6em;
+}
+
+.hero-description {
+	margin-top: 2em;
+	line-height: $line-height;
+	color: $color-2;
+}
+
 .illustration001 {
-	height: 100px;
-	padding-top: 80px;
+	padding-top: 100px;
+	.hero-illustration {
+		width: 100%;
+	}
 }
 
 .get-started-btn {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: flex-end;
+	-webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
 	.get-started {
-		@include button($color-1, white);
+		@include button($color-3, white);
 	}
 }
 
@@ -74,9 +107,15 @@ header {
 	width: 100%;
 	height: 100%;
 	position: fixed;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	top: 0;
 	left: 0;
 	z-index: 2;
@@ -106,6 +145,25 @@ header {
 		position: absolute;
     right: 0;
     top: 0;
+    -webkit-transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
+    transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
+    transition: transform 100ms ease-in, color 100ms ease-in;
+    transition: transform 100ms ease-in, color 100ms ease-in, -webkit-transform 100ms ease-in;
+    &:hover {
+    	cursor: pointer;
+    	color: red;
+    	-webkit-transform: scale(1.1);
+    	        transform: scale(1.1);
+    }
+	}
+}
+
+.password {
+	position: relative;
+	.forgot-password {
+		display: block;
+		position: absolute;
+		right: 0;
 	}
 }
 
@@ -128,9 +186,15 @@ header {
 }
 
 .account-info {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+	-webkit-box-pack: end;
+	    -ms-flex-pack: end;
+	        justify-content: flex-end;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .profile-img {
@@ -141,11 +205,226 @@ header {
 		width: 100%;
 		height: 100%;
 	  border-radius: 50%;
+	  border: 2px solid white;
   }
 }
 
 .user-name {
 	p {
    color:white;
+	}
+}
+
+.dashboard-wrapper {
+	margin-top: 6em;
+}
+
+.nav-menu {
+	border-bottom: 1px solid $color-1;
+}
+
+.nav-tabs {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	.my-questions {
+		@include navtab($color-1, white);
+		&:hover {
+			-webkit-transform: scale(1.1);
+			        transform: scale(1.1);
+		}
+	}
+	.my-stats {
+		@include navtab($color-4, #545454);
+	}
+}
+
+.calendar-sec {
+	border-radius: $border-radius;
+	background-color: white;
+	box-shadow: 0 18px 15px -8px rgba(0,0,0,0.2), 0px 0px 4px 1px rgba(0,0,0,0.2);
+	.month-name {
+		border-radius: 4px 4px 0 0;
+		background-color:$color-1; 
+		color: white;
+		padding: 2em;
+    text-align: center;
+    p {
+    	font-size: 1.2em;
+    }
+	}
+	.calendar {
+		padding: 1.1em;
+		.calendar-dates {
+			table {
+				margin: 0 auto;
+				border-spacing: 0;
+				th,
+				td {
+					padding: 1em 0.8em;
+					text-align: center;
+					border: 1px solid $color-5;
+				}
+	      th {
+	      	color: $color-1;
+	      }
+	      td {
+	      	font-size: 0.9em;
+	      	-webkit-transition: all 200ms ease-in;
+	      	transition: all 200ms ease-in;
+	      	&:nth-child(3n+1) {
+	      		background-color: $color-6;
+	      		color: white;
+	      		&:hover {
+	      			background-color: white;
+	      			color: $color-6;
+	      		}
+	      	}
+	      	&:hover {
+	      		background-color: $color-5;
+	      		color: $color-1;
+	      		cursor: pointer;
+	      	}
+	      }
+			}
+		}
+	}
+}
+
+.all-questions {
+	position: relative;
+	padding: 1em;
+}
+
+.question-sec {
+	border: 1px solid #999999;
+	position: relative;
+	margin-bottom: 1em;
+	&:first-child {
+		border: none;
+		box-shadow: 0 0 10px rgba($color-1, 0.6);
+		-webkit-transform: scale(1.01);
+		        transform: scale(1.01);
+		-webkit-transform-origin: center;
+		        transform-origin: center;
+		.question {
+			color: $color-1;
+			font-size: 2.2em;
+			font-weight: 400;
+		}
+	}
+	p:nth-child(2) {
+		text-align: right;
+	}
+	input[type="text"] {
+		font-family: 'Open Sans';
+    outline: 0;
+    width: 100%;
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #545454;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border: none;
+    border-bottom: 1px solid rgba(#999999, 0.2);
+    &::-webkit-input-placeholder {
+    	font-weight: 100;
+    	opacity: 0.6;
+    }
+	}
+   
+   input[type="number"] {
+    height: 2em;
+   }
+
+	.delete {
+		position: absolute;
+		right: 1em;
+		bottom: 1em;
+		display: inline-block;
+		font-size: 0.8em;
+		color: #999999;
+		&:hover {
+			cursor: pointer;
+			color: $color-1;
+		}
+	}
+}
+
+.add-ques-btn {
+	position: absolute;
+	left: 1em;
+	bottom: -3em;
+	border-radius: 50%;
+	background-color: $color-1;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	span {
+		position: relative;
+		top: 12px;
+		color: white;
+		font-size: 2em;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.expected-ans {
+	border-collapse: separate;
+	margin: 1em 0 0 0;
+	p {
+    color: #999999;
+    margin-bottom: 1em;
+    padding-bottom: 0.4em;
+	}
+  > span {
+  	padding: 0.6em 1em;
+  	color: white;
+  	&:hover {
+  		cursor: pointer;
+  	}
+  }
+  .yes-ans {
+  	background-color: $color-6;
+  }
+  .no-ans {
+  	background-color: red;
+  }
+	.number-range {
+		margin-left: 0.8em;
+		display: inline-block;
+		input {
+      width: 60px;
+      margin-left: 0.8em;
+      border: 1px solid grey;
+		}
+	}
+}
+
+.page-intro {
+	margin: 1em 0;
+	font-family: 'Open Sans';
+	color: #999999;
+	font-size: 2.4em;
+	font-weight: 300;
+}
+
+.check-mark {
+	border-radius: 50%;
+	text-align: center;
+	position: absolute;
+	right: -4em;
+	top: 0;
+	width: 2em;
+	height: 2em;
+	background-color: $color-6;
+	color: white;
+	span {
+		position: relative;
+		top: 7px;
 	}
 }
