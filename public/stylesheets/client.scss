@@ -263,11 +263,13 @@ header {
 	p:nth-child(2) {
 		text-align: right;
 	}
-	.question {
-		font-family: 'Open Sans', 'Sans-serif';
-		font-size: 1.6em;
-		color: #999999;
-		font-weight: 100;
+	input[type="text"] {
+		font-family: 'Open Sans';
+    outline: 0;
+    width: 100%;
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #545454;
 	}
 	.delete {
 		position: absolute;
