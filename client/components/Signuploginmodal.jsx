@@ -27,7 +27,7 @@ class SignupLoginModal extends Component {
   		    <div className="col-xs-8 modal">
             <div className="list-tabs">
              <ul>
-              <li><a href="#" onClick={this.showLogin}>Log In</a></li>
+              <li><a href="#" className="active" onClick={this.showLogin}>Log In</a></li>
               <li><a href="#" onClick={this.showSignup}>Sign Up</a></li>
              </ul>
              <span href="" className="close-btn" onClick={this.props.hideModal}>✖</span>
