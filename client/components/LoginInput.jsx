@@ -4,12 +4,6 @@ const LoginInput = () => {
   let email = '';
   let password = '';
 
-  handleLogin = (e) => {
-    e.preventDefault();
-    if (!email.value || !password.value) {
-      return props.handleErrorMsg('Email and password both are needed');
-    }
-  } 
 	return (
 		<div className="col-xs-12 login-sec">
    		<div className="login-form">
@@ -40,7 +34,7 @@ const LoginInput = () => {
    			  <div className="col-xs-12">
      			  <div className="col">
 	     			  <label>
-	     			   <input type="submit" name="submit" value="Log In" onClick={handleLogin}/>
+	     			   <input type="submit" name="submit" value="Log In" />
 	     			  </label>
      			  </div>
    			  </div>
