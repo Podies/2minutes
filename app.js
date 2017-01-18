@@ -72,6 +72,10 @@ app.use('*', function(req, res) {
   res.render('index');
 });
 
+app.use('*', function(req, res) {
+  res.render('index');
+});
+
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
