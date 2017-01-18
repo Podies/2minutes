@@ -1,6 +1,7 @@
 import React from 'react';
-import Signupbutton from './Signupbutton';
-import Accountinfo from './Accountinfo';
+import SignupButton from './SignupButton';
+import AccountInfo from './AccountInfo';
+import { Link } from 'react-router';
 
 const Header = () => {
   return (
@@ -12,12 +13,14 @@ const Header = () => {
 			        <div className="col-xs-2">
 			          <div className="col">
 			            <div className="logo-sec">
-					          <img src="../images/2-Minutes-Logo.svg"/>
+			            	<Link to="/">
+			            		<img src="../images/2-Minutes-Logo.svg"/>
+			            	</Link>
 					        </div>
 				        </div>
 			        </div>
-			        <Accountinfo />
-			      {/*<Signupbutton />*/}
+			        <AccountInfo />
+			      {/*<SignupButton />*/}
 			      </header> 
 			    </div>
 			  </div>

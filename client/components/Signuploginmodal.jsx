@@ -1,6 +1,6 @@
 import React from 'react';
-import Loginmodal from './Loginmodal';
-import Signupmodal from './Signupmodal';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
 const Signuploginmodal = (props) => {
 	return (
@@ -17,8 +17,8 @@ const Signuploginmodal = (props) => {
            </ul>
            <span href="" className="close-btn" onClick={props.hideLogin}>✖</span>
           </div>
-          	<Loginmodal />
-          	{/* <Signupmodal /> */}
+          	<LoginModal />
+          	{/* <SignupModal /> */}
 		    </div>
 		  </div>
 		 </div>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
-import Signuploginmodal from './Signuploginmodal';
+import SignupLoginModal from './SignupLoginModal';
 
 
 class Landing extends Component {
@@ -52,7 +52,7 @@ class Landing extends Component {
 			  </div>
 			  {
 			  	this.state.showLogin ? 
-			  		<Signuploginmodal hideLogin={this.hideLogin} />
+			  		<SignupLoginModal hideLogin={this.hideLogin} />
 			  		:
 			  		null
 			  }
