@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import SignupLoginModal from './SignupLoginModal';
-
 
 class Landing extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			showLogin: false
-		};
-		this.handleLogin = this.handleLogin.bind(this);
-		this.hideLogin = this.hideLogin.bind(this);
-	}
-	handleLogin() {
-		this.setState({showLogin: true});
-	}
-	hideLogin() {
-		this.setState({showLogin: false});
-	}
 	render() {
 		return (
 			<div>
@@ -50,12 +34,6 @@ class Landing extends Component {
 			      </div>
 			    </div>
 			  </div>
-			  {
-			  	this.state.showLogin ? 
-			  		<SignupLoginModal hideLogin={this.hideLogin} />
-			  		:
-			  		null
-			  }
 		  </div>
 		);
 	}

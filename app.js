@@ -60,6 +60,10 @@ var passportService = require('./auth/passport')(passport);
 app.use('/', routes);
 app.use('/users', users);
 
+app.use('*', function(req, res) {
+  res.render('index');
+});
+
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

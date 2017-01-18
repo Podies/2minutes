@@ -25,8 +25,5 @@ router.get('/auth/google/callback',
     failureRedirect : '/users'
   }));
 
-router.get('*', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
 
 module.exports = router;
