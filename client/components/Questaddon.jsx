@@ -5,7 +5,7 @@ const Questaddonnewuser = () => {
 	return(
 		<div className="row">
 		  <div className="col">
-	      <input type="text" class="question" placeholder="Talk to family members every week."/>
+	      <input type="text" class="question" placeholder="Eg.Talk to family members every week."/>
 	      <p className="delete">Delete this question.</p>
 			  <div className="expected-ans">
 			    <p>Expected Answer</p>

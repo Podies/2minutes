@@ -1,6 +1,7 @@
 import React from 'react';
 import Loginmodal from './Loginmodal';
 import Signupmodal from './Signupmodal';
+import ForgotPassword from './ForgotPassword';
 
 
 const Signuploginmodal = () => {
@@ -18,8 +19,9 @@ const Signuploginmodal = () => {
            </ul>
            <span className="close-btn">✖</span>
           </div>
-          	<Loginmodal />
-          	{/* <Signupmodal /> */}
+          <ForgotPassword />
+        	{/*<Loginmodal />*/}
+        	{/* <Signupmodal /> */}
 		    </div>
 		  </div>
 		 </div>

@@ -16,8 +16,8 @@ const Header = () => {
 					        </div>
 				        </div>
 			        </div>
-			        <Accountinfo />
-			      {/*<Signupbutton />*/}
+			        {/*<Accountinfo />*/}
+			        <Signupbutton />
 			      </header> 
 			    </div>
 			  </div>
