@@ -117,7 +117,18 @@ $para-txt: 'Source Sans Pro';
 	color: $txt_color;
 	border-radius: 4px 4px 0 0;
 	text-decoration: none;
+}
 
+@mixin submitbtn {
+	border: none;
+	@include button($color-7,$color-3);
+	font-size: 1em;
+	width: 50%;
+	margin: 0 auto;
+	&:hover {
+		background-color:$color-3 ;
+		cursor: pointer;
+	}
 }
 
 // =======================================================================================
@@ -398,7 +409,7 @@ header {
 		}
 		.active {
       @include button($color-3,white);
-		}
+ 		}
 	}
 	.close-btn {
 		position: absolute;
@@ -418,48 +429,162 @@ header {
 }
 
 .login-input-sec {
-	width: 60%;
+	width: 50%;
 	margin: 0 auto;
-	input {
+	text-align: center;
+	input[type="email"],input[type="password"] {
+		font-family: 'Montserrat';
+		font-size: 1em;
+		padding-left: 2.6em;
 		display: block;
 		width: 100%;
+		height: 3.2em;
+		&::-webkit-input-placeholder {
+			font-family: 'Source Sans Pro';
+    	font-weight: 100;
+    	opacity: 0.8;
+    }
 	}
+  
+  input[type="password"] {
+  	margin-top: -2em;
+  }
+
 	input[type="checkbox"]{
-		width: 4%;
-		text-align: left;
+		width: 16px;
+		height: 16px;
+		padding-left: 2.6em;
+		margin: 0;
+		display: inline;
+	}
+	input[type="submit"] {
+		@include submitbtn;
 	}
 }
 
+.styled-checkbox {
+	display: flex;
+	align-items: center;
+}
+
+.keep-me-logged-in {
+	margin-left: 0.6em;
+	font-size: 0.8em;
+	color: $color-2;
+}
+
+.email {
+	i {
+  	position: relative;
+  	color: $color-2;
+  	top: 1.9em;
+  	left: -7.4em;
+  	font-size: 1.2em;
+  }	
+}
 
 .align-link {
 	position: relative;
 	.password {
-		
+    i {
+    	position: relative;
+    	color: $color-2;
+    	top: 0.2em;
+	  	left: -7.4em;
+	  	font-size: 1.2em;
+    }		
 		.forgot-password {
 			display: block;
 			position: absolute;
 			right: 1em;
+			margin: 0.4em 0;
+			color: $color-2;
+			text-decoration: none;
+			font-size: 0.9em;
+			transition: color 200ms ease-in;
+			&:hover {
+				color: $color-3;
+				text-decoration: underline;
+			}
 		}
 	}
 }
 
+.signup-input-sec {
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+	input[type="text"], input[type="email"], input[type="password"] {
+		font-family: 'Montserrat';
+		width: 100%;
+		font-size: 1em;
+		height: 3.2em;
+		padding: 0 1em;
+		margin-top: -2em;
+		&::-webkit-input-placeholder {
+			font-family: 'Source Sans Pro';
+			opacity: 0.8;
+			font-weight: 100;
+		}
+	}
+
+	input[type="text"] {
+		margin-top: 0.8em;
+	}
+
+	input[type="submit"] {
+		@include submitbtn;
+		margin-top: -0.5em;
+	}
+}
+
 .signup-sec p, .login-sec p {
+	font-family: 'Montserrat';
+	color: $color-2;
+	padding: 0 20em;
 	text-align: center;
-	margin: 1em 0;
+	margin: 1em auto;
+	position: relative;
+
+	&:before,
+	&:after {
+		content: "";
+		width: 20em;
+		height: 1px;
+		position: absolute;
+		background-color: $color-7 - 10;
+	}
+
+	&:before {
+		left: 0;
+		top: 50%;
+	}
+
+	&:after {
+		right:0;
+		top: 50%;
+	}
 }
 
-.signupopt1, .signupopt2 {
+
+.alternate-options {
 	text-align: center;
-	margin: 1em 0 1em 0;
+	.signupopt1  {
+		@include button(#dd4b39, white);
+		p {
+			display: inline;
+		}
+	}
+
+	.signupopt2 {
+		@include button(#4a6eaa, white);
+		margin-left: 1em;
+		p {
+			display: inline;
+		}
+	}
 }
 
-.signupopt1 a {
-	@include button(white, red );
-}
-
-.signupopt2 a {
-	@include button(white, blue );
-}
 
 // =======================================================================================
 //      Dashboard-Questionnaire
