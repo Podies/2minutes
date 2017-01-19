@@ -7,9 +7,20 @@ var bodyParser = require('body-parser');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var compiler = webpack(config);
+var mongoose = require('mongoose');
+var passport = require('passport');
+var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost:27017/2minutes', function(err, connected) {
+    console.log(err, "Mongo connected");
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
+
 
 var app = express();
 
@@ -33,8 +44,37 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//session Middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+//middleware for passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+var passportService = require('./auth/passport')(passport);
+
+// Route handler
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
+
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
