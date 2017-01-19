@@ -1,13 +1,94 @@
+// =======================================================================================
+//       Import Files and Other Assets
+// =======================================================================================
+
 @import "./_grid.scss";
+
+// =======================================================================================
+//       Define Variables Here
+// ======================================================================================= 
 
 $color-1: #30343c;
 $color-2: #8e8aa0;
 $color-3: #E04E5B;
 $color-4: #f1f2f5;
-$color-5: #d1dfee;
+$color-5: #909090;
 $color-6: #49c349;
-$border-radius: 4px;
-$line-height: 1.4em;
+$color-7: #f5f5f5;
+$border-radius: 0;
+$line-height: 1.6em;
+$header-txt: 'Montserrat';
+$para-txt: 'Source Sans Pro';
+
+// =======================================================================================
+//       Mixins
+// =======================================================================================
+@mixin walkthrough {
+	padding: 5em 0;
+}
+
+@mixin heading {
+	font-family: $header-txt;
+	line-height: $line-height;
+	font-size: 1.6em;
+	color: $color-3;
+	position: relative;
+	&:after {
+		position: absolute;
+		display: block;
+		content: '';
+		width: 4em;
+		height: 2px;
+		background-color: $color-2;
+		left: 50%;
+		margin-left:-2em;
+		bottom: -6px; 
+	}
+}
+
+@mixin headingGenLeft {
+	font-family: $header-txt;
+	line-height: $line-height;
+	font-size: 1.6em;
+	color: $color-3;
+	position: relative;
+	&:after {
+		position: absolute;
+		display: block;
+		content: '';
+		width: 4em;
+		height: 2px;
+		background-color: $color-2;
+		left: 0;
+		bottom: -6px; 
+	}
+}
+
+@mixin headingGenRight {
+	font-family: $header-txt;
+	line-height: $line-height;
+	font-size: 1.6em;
+	color: $color-3;
+	position: relative;
+	&:after {
+		position: absolute;
+		display: block;
+		content: '';
+		width: 4em;
+		height: 2px;
+		background-color: $color-2;
+		right: 0;
+		bottom: -6px; 
+	}
+}
+
+@mixin parastyle {
+	font-family: $para-txt;
+	line-height: $line-height;
+	font-size: 1em;
+	color: $color-2;
+	margin-top: 2em;
+}
 
 @mixin boxshadow($color) {
 	box-shadow: 0px 0px 100px rgba($color, 0.6);
@@ -17,6 +98,7 @@ $line-height: 1.4em;
 	padding:0.8em 1em;
 	text-decoration: none;
 	background-color: $bg_color;
+	box-shadow: inset 0 -12px 16px rgba(255, 255, 255, 0.1);
 	color: $txt-color;
 	font-family: 'Montserrat', 'Source Sans Pro';
 	letter-spacing: 0.1em;
@@ -38,13 +120,12 @@ $line-height: 1.4em;
 
 }
 
-body {
-	margin: 0;
-	font-family: 'Source Sans Pro';
-}
+// =======================================================================================
+//       Styles for Header
+// =======================================================================================
 
 .extended-header {
-	z-index: 5;
+	z-index: 2;
 	position: fixed;
 	width: 100%;
 	background-color: $color-1;
@@ -62,32 +143,7 @@ header {
 .logo-sec {
 	text-align: left;
 	img {
-		width: 70%;
-	}
-}
-
-.hero-sec {
-	height: 700px;
-	background-color: $color-1;
-}
-
-.hero-heading {
-		font-family: 'Montserrat';
-		text-align: center;
-		color: $color-3;
-		font-size: 1.6em;
-}
-
-.hero-description {
-	margin-top: 2em;
-	line-height: $line-height;
-	color: $color-2;
-}
-
-.illustration001 {
-	padding-top: 100px;
-	.hero-illustration {
-		width: 100%;
+		width: 80%;
 	}
 }
 
@@ -100,89 +156,8 @@ header {
 	        justify-content: flex-end;
 	.get-started {
 		@include button($color-3, white);
+		box-shadow: inset 0 -10px 12px rgba(255,255,255, 0.15), 0 0 12px rgba(0,0,0, 0.2); 
 	}
-}
-
-.signuploginmodal {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	top: 0;
-	left: 0;
-	z-index: 2;
-	background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal {
-	padding: 40px;
-	background-color: white;
-	margin: 0 auto;
-	border-radius: $border-radius;
-	@include boxshadow(black);
-}
-
-.list-tabs {
-	position: relative;
-	text-align: center;
-	border-bottom: 1px solid $color-2;
-	padding: 1em 0;
-	li {
-		display: inline;
-		a {
-			@include button(white,$color-1);
-		}
-	}
-	.close-btn {
-		position: absolute;
-    right: 0;
-    top: 0;
-    -webkit-transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
-    transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
-    transition: transform 100ms ease-in, color 100ms ease-in;
-    transition: transform 100ms ease-in, color 100ms ease-in, -webkit-transform 100ms ease-in;
-    &:hover {
-    	cursor: pointer;
-    	color: red;
-    	-webkit-transform: scale(1.1);
-    	        transform: scale(1.1);
-    }
-	}
-}
-
-.password {
-	position: relative;
-	.forgot-password {
-		display: block;
-		position: absolute;
-		right: 0;
-	}
-}
-
-.signup-sec p, .login-sec p {
-	text-align: center;
-	margin: 1em 0;
-}
-
-.signupopt1, .signupopt2 {
-	text-align: center;
-	margin: 1em 0 1em 0;
-}
-
-.signupopt1 a {
-	@include button(white, red );
-}
-
-.signupopt2 a {
-	@include button(white, blue );
 }
 
 .account-info {
@@ -215,6 +190,281 @@ header {
 	}
 }
 
+// =======================================================================================
+//       Styles for Hero Section
+// =======================================================================================
+
+.hero-sec {
+	background-color: $color-1;
+	background-image: linear-gradient(to bottom, $color-1, rgba($color-2,0.2));
+	padding-bottom: 2em;
+}
+
+.intro-video {
+
+	iframe {
+		box-shadow: 0px 0px 4px rgba($color-1, 0.4), 0 20px 25px -8px rgba(0,0,0,0.4);
+		border-radius: $border-radius;
+	}
+}
+
+.hero-heading {
+		text-align: center;
+		padding: 0 3em;
+		@include heading;
+}
+
+.hero-description {
+	@include parastyle;
+}
+
+.intro-video {
+	padding: 100px 0 0 0;
+}
+
+.hero-illustration-sec {
+	padding: 6em 10em 0 10em ;
+	.hero-illustration {
+		width: 100%;
+	}
+}
+
+// =======================================================================================
+//      Landing Page
+// =======================================================================================
+
+.walkthrough-sec-1 {
+	@include walkthrough;
+	.product-learning-1 {
+		padding: 4em 0;
+		h1 {
+			@include headingGenLeft;
+			text-align: left;
+		}
+		p {
+			@include parastyle;
+			padding-right: 12em;
+		}
+	}
+	.illustration-1-sec {
+    .illustration-1 {
+      width: 100%;
+    }
+	}
+}
+
+.walkthrough-sec-2 {
+	@include walkthrough;
+	.product-learning-2 {
+		padding: 4em 0;
+		h1 {
+			@include headingGenRight;
+			text-align: right;
+		}
+		p {
+			@include parastyle;
+			text-align: right;
+			padding-left: 12em;
+		}
+	}
+	.illustration-2-sec {
+    .illustration-2 {
+      width: 100%;
+    }
+	}
+}
+
+.walkthrough-sec-3 {
+	@include walkthrough;
+	.product-learning-3 {
+		padding: 4em 0;
+
+		h1 {
+			@include headingGenLeft;
+			text-align: left;
+		}
+
+		p {
+			@include parastyle;
+			padding-right: 12em;
+		}
+	}
+
+	.illustration-3-sec {
+
+    .illustration-3 {
+      width: 100%;
+    }
+	}
+}
+
+// =======================================================================================
+//      Footer Styles
+// =======================================================================================
+
+.extended-footer {
+	background-color: $color-7;
+	.footer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.feedback {
+		text-decoration: none;
+		color: $color-2;
+		transition: color 100ms ease-in;
+		font-size: 0.9em;
+		&:hover {
+			color: $color-3;
+		}
+	}
+
+	.copyright-sec {
+
+		span {
+			color: $color-2;
+			transition: color 100ms ease-in;
+			font-size: 0.9em;
+			a {
+				text-decoration: none;
+				color: #4b4a4e;
+				transition: color 100ms ease-in;
+				&:hover {
+					color: $color-3;
+				}
+			}
+		}
+	}
+}
+
+// =======================================================================================
+//      Styles for Signup-login Modals
+// =======================================================================================
+
+.signuploginmodal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+	padding: 40px;
+	background-color: white;
+	margin: 0 auto;
+	border-radius: $border-radius;
+	@include boxshadow(black);
+}
+
+.list-tabs {
+	position: relative;
+	text-align: center;
+	padding: 0.8em 0;
+	z-index: 3;
+	&:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-color: $color-3;
+    height: 2px;
+    bottom:-1px;
+    left: 0;
+	}
+
+	li {
+		display: inline;
+		a {
+			@include button($color-7,$color-5);
+			transition: all 200ms ease-in;
+			box-shadow: inset 4px -4px 12px rgba(0,0,0,0.16);
+			&:hover {
+				color: $color-3;
+				background-color: $color-7;
+				font-weight: 500;
+				box-shadow: none;
+			}
+		}
+		.active {
+      @include button($color-3,white);
+		}
+	}
+	.close-btn {
+		position: absolute;
+    right: 0;
+    top: 0;
+    -webkit-transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
+    transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
+    transition: transform 100ms ease-in, color 100ms ease-in;
+    transition: transform 100ms ease-in, color 100ms ease-in, -webkit-transform 100ms ease-in;
+    &:hover {
+    	cursor: pointer;
+    	color: red;
+    	-webkit-transform: scale(1.1);
+    	        transform: scale(1.1);
+    }
+	}
+}
+
+.login-input-sec {
+	width: 60%;
+	margin: 0 auto;
+	input {
+		display: block;
+		width: 100%;
+	}
+	input[type="checkbox"]{
+		width: 4%;
+		text-align: left;
+	}
+}
+
+
+.align-link {
+	position: relative;
+	.password {
+		
+		.forgot-password {
+			display: block;
+			position: absolute;
+			right: 1em;
+		}
+	}
+}
+
+.signup-sec p, .login-sec p {
+	text-align: center;
+	margin: 1em 0;
+}
+
+.signupopt1, .signupopt2 {
+	text-align: center;
+	margin: 1em 0 1em 0;
+}
+
+.signupopt1 a {
+	@include button(white, red );
+}
+
+.signupopt2 a {
+	@include button(white, blue );
+}
+
+// =======================================================================================
+//      Dashboard-Questionnaire
+// =======================================================================================
+
 .dashboard-wrapper {
 	margin-top: 6em;
 }
@@ -236,58 +486,6 @@ header {
 	}
 	.my-stats {
 		@include navtab($color-4, #545454);
-	}
-}
-
-.calendar-sec {
-	border-radius: $border-radius;
-	background-color: white;
-	box-shadow: 0 18px 15px -8px rgba(0,0,0,0.2), 0px 0px 4px 1px rgba(0,0,0,0.2);
-	.month-name {
-		border-radius: 4px 4px 0 0;
-		background-color:$color-1; 
-		color: white;
-		padding: 2em;
-    text-align: center;
-    p {
-    	font-size: 1.2em;
-    }
-	}
-	.calendar {
-		padding: 1.1em;
-		.calendar-dates {
-			table {
-				margin: 0 auto;
-				border-spacing: 0;
-				th,
-				td {
-					padding: 1em 0.8em;
-					text-align: center;
-					border: 1px solid $color-5;
-				}
-	      th {
-	      	color: $color-1;
-	      }
-	      td {
-	      	font-size: 0.9em;
-	      	-webkit-transition: all 200ms ease-in;
-	      	transition: all 200ms ease-in;
-	      	&:nth-child(3n+1) {
-	      		background-color: $color-6;
-	      		color: white;
-	      		&:hover {
-	      			background-color: white;
-	      			color: $color-6;
-	      		}
-	      	}
-	      	&:hover {
-	      		background-color: $color-5;
-	      		color: $color-1;
-	      		cursor: pointer;
-	      	}
-	      }
-			}
-		}
 	}
 }
 
@@ -426,5 +624,61 @@ header {
 	span {
 		position: relative;
 		top: 7px;
+	}
+}
+
+// =======================================================================================
+//      Dashboard-Statistics
+// =======================================================================================
+
+.calendar-sec {
+	border-radius: $border-radius;
+	background-color: white;
+	box-shadow: 0 18px 15px -8px rgba(0,0,0,0.2), 0px 0px 4px 1px rgba(0,0,0,0.2);
+	.month-name {
+		border-radius: 4px 4px 0 0;
+		background-color:$color-1; 
+		color: white;
+		padding: 2em;
+    text-align: center;
+    p {
+    	font-size: 1.2em;
+    }
+	}
+	.calendar {
+		padding: 1.1em;
+		.calendar-dates {
+			table {
+				margin: 0 auto;
+				border-spacing: 0;
+				th,
+				td {
+					padding: 1em 0.8em;
+					text-align: center;
+					border: 1px solid $color-5;
+				}
+	      th {
+	      	color: $color-1;
+	      }
+	      td {
+	      	font-size: 0.9em;
+	      	-webkit-transition: all 200ms ease-in;
+	      	transition: all 200ms ease-in;
+	      	&:nth-child(3n+1) {
+	      		background-color: $color-6;
+	      		color: white;
+	      		&:hover {
+	      			background-color: white;
+	      			color: $color-6;
+	      		}
+	      	}
+	      	&:hover {
+	      		background-color: $color-5;
+	      		color: $color-1;
+	      		cursor: pointer;
+	      	}
+	      }
+			}
+		}
 	}
 }

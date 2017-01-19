@@ -8,7 +8,7 @@ const LoginInput = () => {
 		<div className="col-xs-12 login-sec">
    		<div className="login-form">
    			<form method="post" action="/users/">
-   			 <fieldset className="">
+   			 <fieldset className="login-input-sec">
    			   <div className="col-xs-12">
      			   <div className="col">
 	     			  <label>Email ID
@@ -17,7 +17,7 @@ const LoginInput = () => {
      			   </div>
    			   </div>
    			  <div className="col-xs-12">
-     			  <div className="col">
+     			  <div className="col align-link">
 	     			  <label className="password">Password
 	     			   <input type="password" name="password" />
                <a href="#" className="forgot-password">Forgot Password ?</a>
@@ -48,7 +48,7 @@ const LoginInput = () => {
    			 </div>
    			 <div className="col-xs-12">
      			 <div className="col signupopt2">
-     			  <a href="/auth/facebook" className="">Log in With Facebook</a>
+     			  <a href="/auth/facebook" className="">log in With Facebook</a>
      			 </div>
    			 </div>
    			 </fieldset>
