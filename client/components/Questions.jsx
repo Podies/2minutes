@@ -1,6 +1,6 @@
 import React from 'react';
-import Questaddon from './Questaddon';
-import NewUserQues from './NewUserQues';
+import AddNewQuestion from './AddNewQuestion';
+import NewUserQuestion from './NewUserQuestion';
 import CheckedReview from './CheckedReview';
 
 
@@ -9,7 +9,7 @@ const Questions = () => {
 	  <div>
 			<div className="row">
 			  <div className="col-xs-12">
-			  <NewUserQues />
+			  <NewUserQuestion />
 			    <div className="col-xs-11">
 			    </div>
 			    <div className="col-xs-1">
@@ -24,7 +24,7 @@ const Questions = () => {
 			  <div className="col-xs-8">
 				  <div className="all-questions">
 				    <div className="question-sec">
-				      <Questaddon />
+				      <AddNewQuestion />
 				      {/*<CheckedReview />*/}
 				    </div>
 				    <div className="add-ques-btn">
