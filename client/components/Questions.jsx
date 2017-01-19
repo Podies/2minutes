@@ -27,9 +27,6 @@ const Questions = () => {
 				      <AddNewQuestion />
 				      {/*<CheckedReview />*/}
 				    </div>
-				    <div className="add-ques-btn">
-					    <span>✚</span>
-			      </div>
 				  </div>
 			  </div>
 			</div>
