@@ -4,14 +4,16 @@ import validator from 'validator';
 
 const ForgotPassword = (props) => {
   let email = '';
+
   const handleForgotPassword = (e) => {
     e.preventDefault();
     if (!email.value) {
-      props.handleForgotPasswordError('Email field need not to be blank.');
+      props.handleForgotPasswordError('Email field needed.');
     }
     if (!validator.isEmail(email.value)) {
-      props.handleForgotPasswordError('You need a valid email.');
+      props.handleForgotPasswordError('Invalid email.');
     }
+
     props.handleForgotPassword({ email: email.value });
   }
 	return(
@@ -19,9 +21,9 @@ const ForgotPassword = (props) => {
         <div>{props.forgotPasswordError}</div>
         <h1>Forgot Password?</h1>
         <p>Don't worry just enter your registered email Id below!</p>
-        <input type="email"/>
+        <input ref={(c) => { email = c; }} type="email"/>
         <p>We will send a password reset link.</p>
-        <input type="submit" refs={(c) => { email = c; }}value="Send Me Reset Link"/>
+        <input type="submit" value="Send Me Reset Link" onClick={handleForgotPassword} />
       </div>
 		)
 }
