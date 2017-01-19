@@ -18,6 +18,7 @@ class SignupLoginModal extends Component {
     this.showForgotPassword = this.showForgotPassword.bind(this);
     this.handleLoginError = this.handleLoginError.bind(this);
     this.handleSignupError = this.handleSignupError.bind(this);
+    this.handleForgotPasswordError = this.handleForgotPasswordError.bind(this);
   }
   showLogin() {
     this.setState({ showComponent: 'login' });
@@ -48,8 +49,8 @@ class SignupLoginModal extends Component {
   		    <div className="col-xs-8 modal">
             <div className="list-tabs">
              <ul>
-              <li><a href="#" className="active" onClick={this.showLogin}>Log In</a></li>
-              <li><a href="#" onClick={this.showSignup}>Sign Up</a></li>
+              <li><a href="#" className={this.state.showComponent == 'login' ? 'active' : null} onClick={this.showLogin}>Log In</a></li>
+              <li><a href="#" className={this.state.showComponent == 'signup' ? 'active' : null} onClick={this.showSignup}>Sign Up</a></li>
              </ul>
              <span href="" className="close-btn" onClick={this.props.hideModal}>✖</span>
             </div>
@@ -74,9 +75,12 @@ class SignupLoginModal extends Component {
             }
             {
               this.state.showComponent == 'forgot' ?
-              <ForgotPassword />
-              :
-              null
+                <ForgotPassword 
+                handleForgotPasswordError={this.handleForgotPasswordError}
+                forgotPasswordError={this.state.forgotPasswordError}
+                />
+                :
+                null
             }
   		    </div>
   		  </div>

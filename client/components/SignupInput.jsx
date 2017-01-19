@@ -33,14 +33,14 @@ const SignupInput = (props) => {
      			 <div className="col-xs-6">
 	     			 <div className="col">
 	     			  <label>First Name
-	     			   <input type="text" ref={ (c) => {firstName = c; }} name="name" />
+	     			   <input type="text" ref={ (c) => {firstName = c; }} name="firstName" />
 	     			  </label>
 	     			 </div>
      			 </div>
      			 <div className="col-xs-6">
              <div className="col">
-              <label>Last-name
-               <input type="text" ref={ (c) => { lastName = c; }}name="last-name" />
+              <label>Last Name
+               <input type="text" ref={ (c) => { lastName = c; }}name="lastName" />
               </label>
              </div>
            </div>
