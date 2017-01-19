@@ -12,8 +12,8 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public
 
 router.get('/auth/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/users',
-    failureRedirect: '/users' 
+    successRedirect: '/dashboard',
+    failureRedirect: '/users/login' 
   }));
 
 //Google Authentication
@@ -21,8 +21,8 @@ router.get('/auth/google', passport.authenticate('google', { scope : ['profile',
 
 router.get('/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/users',
-    failureRedirect : '/users'
+    successRedirect : '/dashboard',
+    failureRedirect : '/users/login'
   }));
 
 

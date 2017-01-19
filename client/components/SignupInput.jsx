@@ -9,14 +9,14 @@ const SignupInput = () => {
      			 <div className="col-xs-6">
 	     			 <div className="col">
 	     			  <label>First Name
-	     			   <input type="text" name="name" />
+	     			   <input type="text" name="firstName" />
 	     			  </label>
 	     			 </div>
      			 </div>
      			 <div className="col-xs-6">
              <div className="col">
               <label>Last-name
-               <input type="text" name="last-name" />
+               <input type="text" name="lastName" />
               </label>
              </div>
            </div>

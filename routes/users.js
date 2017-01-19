@@ -11,10 +11,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/signup', function(req, res) {
-  var name = req.body.first-name + " " + req.body.last-name;
+  var name = req.body.firstName + " " + req.body.lastName;
   var email = req.body.email;
   var password = req.body.password;
-
+  console.log(name, email, password);
   if(!name || !email || !password) {
     res.status(422).send({error: "Provide Valid Credentials"});
   } else {
@@ -33,7 +33,7 @@ router.post('/signup', function(req, res) {
             });
             newUser.save(function(err, savedUser) {
               // console.log(err, savedUser);
-              res.send('New User Saved');
+              res.redirect('/dashboard');
             })
           } 
         }
@@ -51,7 +51,7 @@ router.post('/login',function(req, res, next){
       res.json({ message: userErrorMsg.message})
     }
     if(user) {
-      res.redirect('/');
+      res.redirect('/dashboard');
     }
   })(req, res, next);
 }); 

@@ -7,7 +7,7 @@ const LoginInput = () => {
 	return (
 		<div className="col-xs-12 login-sec">
    		<div className="login-form">
-   			<form method="post" action="/users/">
+   			<form method="post" action="/users/login">
    			 <fieldset className="">
    			   <div className="col-xs-12">
      			   <div className="col">
