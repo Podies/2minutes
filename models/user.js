@@ -16,7 +16,7 @@ const userSchema = Schema({
     token: String,
     name: String
   },
-  setId:{type: Schema.Types.ObjectId, ref: 'QuestionSet'},
+  questionSetId:{type: Schema.Types.ObjectId, ref: 'QuestionSet'},
   resultId: {type: Schema.Types.ObjectId, ref: 'Result'}
 });
 

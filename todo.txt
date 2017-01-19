@@ -1,0 +1,10 @@
+// post requ - body userId
+
+// Add New Question
+- POST
+- Body { name, userPreference, userId: '587d1a5a858e9d4ab6877e2f' }
+- User has a questionSet or not? If yes, create question and append it to questionSet. 
+  If not, create a question and also create a new questionSet.
+- send response question details.
+
+  req.body.userId (API) req.user._id()
