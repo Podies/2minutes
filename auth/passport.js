@@ -64,6 +64,7 @@ module.exports = function(passport) {
             newUser.facebook.name = profile.displayName;
             newUser.email = profile.emails[0].value;
             newUser.password = 'random';
+            newUser.name = profile.displayName;
 
             newUser.save(function(err) {
               if(err) 
@@ -96,6 +97,7 @@ module.exports = function(passport) {
             newUser.google.name = profile.displayName;
             newUser.email = profile.emails[0].value;
             newUser.password = 'random';
+            newUser.name = profile.displayName;
 
             newUser.save(function(err) {
               if(err) 

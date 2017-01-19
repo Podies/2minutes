@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const questionSchema = Schema({
-  setId: {type: Schema.Types.ObjectId, ref: 'QuestionSet'},
+  questionSetId: {type: Schema.Types.ObjectId, ref: 'QuestionSet'},
   name: String,
   userPreference: {type:Schema.Types.Mixed},
   answer: [{
-    date: date.now(),
+    date: {type: Date, default:Date.now},
     input: String
   }]
 });

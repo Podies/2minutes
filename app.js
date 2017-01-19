@@ -19,6 +19,8 @@ mongoose.connect('mongodb://localhost:27017/2minutes', function(err, connected) 
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
+
 
 var app = express();
 
@@ -59,6 +61,16 @@ var passportService = require('./auth/passport')(passport);
 // Route handler
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
+
+
+app.use('*', function(req, res) {
+  res.render('index');
+});
 
 app.use('*', function(req, res) {
   res.render('index');

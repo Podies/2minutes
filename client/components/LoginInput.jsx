@@ -28,7 +28,7 @@ const LoginInput = (props) => {
         <div>
           {props.loginError}
         </div>
-   			<form method="post" action="/users/">
+   			<form method="post" action="/users/login">
    			 <fieldset className="login-input-sec">
    			   <div className="col-xs-12">
      			   <div className="col">
