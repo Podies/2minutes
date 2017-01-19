@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import LoginInput from './LoginInput';
 import SignupInput from './SignupInput';
+import ForgotPassword from './ForgotPassword';
 
 class SignupLoginModal extends Component {
   constructor(props){
     super(props);
     this.state = {
-      showComponent: 'login'
+      showComponent: 'login',
+      loginError: '',
+      signupError: '',
+      forgotPasswordError: '',
     }
+
     this.showSignup = this.showSignup.bind(this);
     this.showLogin = this.showLogin.bind(this);
+    this.showForgotPassword = this.showForgotPassword.bind(this);
+    this.handleLoginError = this.handleLoginError.bind(this);
+    this.handleSignupError = this.handleSignupError.bind(this);
   }
   showLogin() {
     this.setState({ showComponent: 'login' });
@@ -17,6 +25,19 @@ class SignupLoginModal extends Component {
   showSignup() {
     this.setState({ showComponent: 'signup' });
   }
+  showForgotPassword() {
+    this.setState({ showComponent: 'forgot' });
+  }
+  handleLoginError(message) {
+    this.setState({ loginError: message });
+  }
+  handleSignupError(message) {
+    this.setState({ signupError: message });
+  }
+  handleForgotPasswordError(message) {
+    this.setState({ forgotPasswordError: message });
+  }
+
   render() {
   	return (
   		<div className="signuploginmodal">
@@ -34,13 +55,26 @@ class SignupLoginModal extends Component {
             </div>
             {
               this.state.showComponent == 'login' ?
-            	<LoginInput />
-              :
-              null
+              	<LoginInput 
+                showForgotPassword={this.showForgotPassword}
+                handleLoginError={this.handleLoginError}
+                loginError={this.state.loginError}
+                />
+                :
+                null
             }
             {
               this.state.showComponent == 'signup' ?
-            	<SignupInput />
+              	<SignupInput
+                handleSignupError={this.handleSignupError}
+                signupError={this.state.signupError}
+                />
+                :
+                null
+            }
+            {
+              this.state.showComponent == 'forgot' ?
+              <ForgotPassword />
               :
               null
             }
