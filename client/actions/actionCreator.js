@@ -11,6 +11,13 @@ const hideModal = () => {
   };
 };
 
+const addActiveUser = (data) => {
+  return {
+    type: 'ADD_ACTIVE_USER',
+    data,
+  };
+};
+
 export {
-  showModal, hideModal
+  showModal, hideModal, addActiveUser
 };

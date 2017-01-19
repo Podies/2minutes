@@ -48,10 +48,10 @@ router.post('/login',function(req, res, next){
       next(err);
     }
     if(userErrorMsg) {
-      res.json({ message: userErrorMsg.message})
+      res.status(400).send({ message: userErrorMsg.message })
     }
     if(user) {
-      res.redirect('/dashboard');
+      res.json({ user: user });
     }
   })(req, res, next);
 }); 

@@ -18,7 +18,6 @@ const LoginInput = (props) => {
     if (!validator.isEmail(email.value)) {
       return props.handleLoginError('Invalid Email');
     }
-
     props.handleLogin({ email: email.value, password: password.value });
   };
 

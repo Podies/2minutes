@@ -38,8 +38,12 @@ class Header extends Component {
 						        </div>
 					        </div>
 				        </div>
-				        {/*<AccountInfo />*/}
-				      	<SignupButton showLoginModal={this.showLoginModal}/>
+				        {
+				        	this.props.activeUser ? 
+				        		<AccountInfo userName={this.props.activeUser.name} />
+				        		:
+				      			<SignupButton showLoginModal={this.showLoginModal}/>
+				        }
 				      	{
 				      		this.state.showLogin ? 
 				      		<SignupLoginModal hideLogin={this.hideLogin}/>
@@ -55,4 +59,9 @@ class Header extends Component {
 	}
 }
 
-export default connect()(Header);
+function mapStateToProps(state) {
+	return {
+		activeUser: state.activeUser
+	}
+}
+export default connect(mapStateToProps)(Header);
