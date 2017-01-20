@@ -13,6 +13,18 @@ const fetchUserQuestionSet = (userId) => {
   };
 };
 
+const addNewQuestion = (data) => {
+  return (dispatch)=> {
+    return apiCalls.addNewQuestion(data)
+      .then((res) => {
+        dispatch(actions.addNewQuestion(res.data.question))
+      },
+      (err) => {
+        return {};
+      });
+  };
+};
+
 export {
-  fetchUserQuestionSet,
+  fetchUserQuestionSet, addNewQuestion
 }

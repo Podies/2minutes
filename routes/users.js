@@ -88,6 +88,8 @@ router.post('/question', function(req, res) {
         if(err) { 
           throw err;
         } else {
+          // send response back with the question.
+          res.json({ question: savedQuestion });
           QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, set) {
             var questionfromSet = set.questions;
             questionfromSet.push(savedQuestion._id);
@@ -122,7 +124,7 @@ router.post('/question', function(req, res) {
             // console.log('saved NewQuestionSet', savedQuestionSet);
             user.questionSetId = savedQuestionSet._id;
             user.save();
-            console.log("user updated", user);
+            res.json({ question: savedQuestion });
           })
         }
 
