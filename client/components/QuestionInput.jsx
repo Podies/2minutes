@@ -14,9 +14,10 @@ class QuestionInput extends Component {
 
 	saveQuestion(e) {
 		e.preventDefault();
-		const userInput = { name: this.question.value, userPreference: this.state.expectedAnswer, userId: this.props.activeUser._id};
+		const userInput = { name: this.question.value, userPreference: this.state.expectedAnswer, userId: this.props.activeUser._id };
 		this.props.dispatch(actionCreators.addNewQuestion(userInput));
-		console.log(userInput);
+		this.question.value = '';
+		this.setState({ expectedAnswer: '' });
 	}
 
 	updateAnswer(e) {

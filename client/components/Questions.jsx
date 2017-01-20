@@ -18,7 +18,6 @@ class Questions extends Component {
 	}
 
 	render() {
-		console.log('re-render', this.props.userQuestions.questions);
 		return(
 		  <div>
 				<div className="row">
