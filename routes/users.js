@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/signup', function(req, res) {
-  var name = req.body.firstName + " " + req.body.lastName;
+  var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
   console.log(name, email, password);
@@ -43,15 +43,16 @@ router.post('/signup', function(req, res) {
 
 router.post('/login',function(req, res, next){
   passport.authenticate('local', function(err, user, userErrorMsg) {
-    console.log('success', err, user)
     if(err) {
       next(err);
     }
     if(userErrorMsg) {
-      res.json({ message: userErrorMsg.message})
+      res.status(400).send({ message: userErrorMsg.message })
     }
     if(user) {
-      res.redirect('/dashboard');
+      req.logIn(user, function(){
+        res.json({ user: user });
+      });
     }
   })(req, res, next);
 }); 
