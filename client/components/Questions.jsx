@@ -12,10 +12,13 @@ class Questions extends Component {
 	constructor(props){
 		super(props);
 	}
+
 	componentWillMount() {	
 		this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
 	}
+
 	render() {
+		console.log('re-render', this.props.userQuestions.questions);
 		return(
 		  <div>
 				<div className="row">
@@ -37,6 +40,7 @@ class Questions extends Component {
 					    <div className="question-sec">
 					      <QuestionInput 
 					      	activeUser={this.props.activeUser}
+					      	dispatch={this.props.dispatch}
 					      />
 					      <CheckedReview />
 					    </div>

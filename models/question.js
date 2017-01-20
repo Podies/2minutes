@@ -8,7 +8,8 @@ const questionSchema = Schema({
   answer: [{
     date: {type: Date, default:Date.now},
     input: String
-  }]
+  }],
+  dateAdded: { type: Date, default: Date.now }
 });
 
 const Question = module.exports = mongoose.model('Question', questionSchema);
