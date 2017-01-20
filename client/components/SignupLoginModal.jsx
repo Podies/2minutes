@@ -3,7 +3,7 @@ import LoginInput from './LoginInput';
 import SignupInput from './SignupInput';
 import ForgotPassword from './ForgotPassword';
 import axios from 'axios';
-import * as actions from '../actions/actionCreator';
+import * as actions from '../actions/actions';
 import { connect } from 'react-redux';
 
 class SignupLoginModal extends Component {
@@ -14,6 +14,7 @@ class SignupLoginModal extends Component {
       loginError: '',
       signupError: '',
       forgotPasswordError: '',
+      successSignup: false,
     }
 
     this.showSignup = this.showSignup.bind(this);
@@ -58,7 +59,7 @@ class SignupLoginModal extends Component {
 
   handleSignup(data) {
     axios.post('/users/signup', data).then((res) => {
-      this.props.dispatch(actions.hideModal());
+      this.setState({ successSignup: true });
     }).catch((err) => {
       this.setState({ signupError: err.response.data});
     });
@@ -96,6 +97,7 @@ class SignupLoginModal extends Component {
                 handleSignupError={this.handleSignupError}
                 signupError={this.state.signupError}
                 handleSignup={this.handleSignup}
+                successSignup={this.state.successSignup}
                 />
                 :
                 null

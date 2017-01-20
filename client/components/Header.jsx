@@ -4,7 +4,7 @@ import AccountInfo from './AccountInfo';
 import { IndexLink } from 'react-router';
 import SignupLoginModal from './SignupLoginModal';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actionCreator';
+import * as actions from '../actions/actions';
 
 class Header extends Component {
 	constructor(props) {

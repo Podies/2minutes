@@ -18,6 +18,13 @@ const addActiveUser = (data) => {
   };
 };
 
+const addUserQuestionSet = (data) => {
+  return {
+    type: 'ADD_USER_QUESTION_SET',
+    data,
+  };
+};
+
 export {
-  showModal, hideModal, addActiveUser
+  showModal, hideModal, addActiveUser, addUserQuestionSet
 };

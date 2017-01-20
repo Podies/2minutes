@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Questaddonnewuser = () => {
+const QuestionInput = () => {
 	return(
 		<div className="row">
 		  <div className="col">
@@ -21,4 +21,4 @@ const Questaddonnewuser = () => {
 	)
 }
 
-export default Questaddonnewuser;
+export default QuestionInput;

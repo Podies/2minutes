@@ -52,7 +52,7 @@ module.exports = function(passport) {
     },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
-        User.findOne({ 'facebook.id': profile.id }, function(err, user) {
+        User.findOne({ email: profile.emails[0].value }, function(err, user) {
           if(err) {return done(err); }
 
           if(user) {
@@ -85,7 +85,8 @@ module.exports = function(passport) {
     },
     function(token, refreshToken, profile, done) {
       process.nextTick(function() {
-        User.findOne({ 'google.id': profile.id }, function(err, user) {
+        // protect if no email provided.
+        User.findOne({ email: profile.emails[0].value }, function(err, user) {
           if(err) {return done(err); }
 
           if(user) {
