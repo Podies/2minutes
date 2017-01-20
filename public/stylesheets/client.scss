@@ -1,12 +1,12 @@
-// =======================================================================================
-//       Import Files and Other Assets
-// =======================================================================================
+/* =======================================================================================*/
+/*       Import Files and Other Assets*/
+/* =======================================================================================*/
 
 @import "./_grid.scss";
 
-// =======================================================================================
-//       Define Variables Here
-// ======================================================================================= 
+/* =======================================================================================*/
+/*       Define Variables Here*/
+/* ======================================================================================= */
 
 $color-1: #30343c;
 $color-2: #8e8aa0;
@@ -20,9 +20,9 @@ $line-height: 1.6em;
 $header-txt: 'Montserrat';
 $para-txt: 'Source Sans Pro';
 
-// =======================================================================================
-//       Mixins
-// =======================================================================================
+/* =======================================================================================*/
+/*       Mixins*/
+/* =======================================================================================*/
 @mixin walkthrough {
 	padding: 5em 0;
 }
@@ -101,7 +101,6 @@ $para-txt: 'Source Sans Pro';
 	box-shadow: inset 0 -12px 16px rgba(255, 255, 255, 0.1);
 	color: $txt-color;
 	font-family: 'Montserrat', 'Source Sans Pro';
-	letter-spacing: 0.1em;
 	border-radius: $border-radius;
 	-webkit-transition: background-color 300ms ease-in;
 	transition: background-color 300ms ease-in;
@@ -131,9 +130,71 @@ $para-txt: 'Source Sans Pro';
 	}
 }
 
-// =======================================================================================
-//       Styles for Header
-// =======================================================================================
+/* =======================================================================================*/
+/*       Keyframes*/
+/* =======================================================================================*/
+
+@-webkit-keyframes modalfromright {
+    0% {
+    	margin-left: 60em;
+      opacity: 0;  
+    }
+    100% {
+    	margin-left: 0;
+    	opacity: 1;
+    }
+}
+
+@keyframes modalfromright {
+    0% {
+    	margin-left: 60em;
+      opacity: 0;  
+    }
+    100% {
+    	margin-left: 0;
+    	opacity: 1;
+    }
+} 
+
+@-webkit-keyframes modalfromleft {
+    0% {
+    	margin-left: -60em;
+      opacity: 0;  
+    }
+    100% {
+    	margin-right: 0;
+    	opacity: 1;
+    }
+} 
+
+@keyframes modalfromleft {
+    0% {
+    	margin-left: -60em;
+      opacity: 0;  
+    }
+    100% {
+    	margin-right: 0;
+    	opacity: 1;
+    }
+}
+
+@keyframes appearfrommiddle {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	70% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* =======================================================================================*/
+/*       Styles for Header*/
+/* =======================================================================================*/
 
 .extended-header {
 	z-index: 2;
@@ -168,7 +229,16 @@ header {
 	.get-started {
 		@include button($color-3, white);
 		box-shadow: inset 0 -10px 12px rgba(255,255,255, 0.15), 0 0 12px rgba(0,0,0, 0.2); 
+		transition: all 300ms ease-in-out;
 	}
+}
+
+.poppingmodal {
+	transform: translateX(-66%), translateY(-60%);
+	width: 66%;
+	height: 60%;
+	background: white;
+	opacity: 0;
 }
 
 .account-info {
@@ -201,12 +271,13 @@ header {
 	}
 }
 
-// =======================================================================================
-//       Styles for Hero Section
-// =======================================================================================
+/* =======================================================================================*/
+/*       Styles for Hero Section*/
+/* =======================================================================================*/
 
 .hero-sec {
 	background-color: $color-1;
+	background-image: -webkit-linear-gradient(top, $color-1, rgba($color-2,0.2));
 	background-image: linear-gradient(to bottom, $color-1, rgba($color-2,0.2));
 	padding-bottom: 2em;
 }
@@ -240,9 +311,9 @@ header {
 	}
 }
 
-// =======================================================================================
-//      Landing Page
-// =======================================================================================
+/* =======================================================================================*/
+/*      Landing Page*/
+/* =======================================================================================*/
 
 .walkthrough-sec-1 {
 	@include walkthrough;
@@ -309,20 +380,25 @@ header {
 	}
 }
 
-// =======================================================================================
-//      Footer Styles
-// =======================================================================================
+/* =======================================================================================*/
+/*      Footer Styles*/
+/* =======================================================================================*/
 
 .extended-footer {
 	background-color: $color-7;
 	.footer {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
 	}
 
 	.feedback {
 		text-decoration: none;
 		color: $color-2;
+		-webkit-transition: color 100ms ease-in;
 		transition: color 100ms ease-in;
 		font-size: 0.9em;
 		&:hover {
@@ -334,11 +410,13 @@ header {
 
 		span {
 			color: $color-2;
+			-webkit-transition: color 100ms ease-in;
 			transition: color 100ms ease-in;
 			font-size: 0.9em;
 			a {
 				text-decoration: none;
 				color: #4b4a4e;
+				-webkit-transition: color 100ms ease-in;
 				transition: color 100ms ease-in;
 				&:hover {
 					color: $color-3;
@@ -348,9 +426,9 @@ header {
 	}
 }
 
-// =======================================================================================
-//      Styles for Signup-login Modals
-// =======================================================================================
+/* =======================================================================================*/
+/*      Styles for Signup-login Modals*/
+/* =======================================================================================*/
 
 .signuploginmodal {
 	width: 100%;
@@ -369,6 +447,8 @@ header {
 	left: 0;
 	z-index: 2;
 	background-color: rgba(0, 0, 0, 0.7);
+	transition: all 250ms ease-in;
+	transition-delay: 300ms; 
 }
 
 .modal {
@@ -377,6 +457,7 @@ header {
 	margin: 0 auto;
 	border-radius: $border-radius;
 	@include boxshadow(black);
+	overflow: hidden;
 }
 
 .list-tabs {
@@ -398,8 +479,9 @@ header {
 		display: inline;
 		a {
 			@include button($color-7,$color-5);
+			-webkit-transition: all 200ms ease-in;
 			transition: all 200ms ease-in;
-			box-shadow: inset 4px -4px 12px rgba(0,0,0,0.16);
+			box-shadow: inset 4px -4px 12px rgba(0,0,0,0.06), inset -4px 4px 12px rgba(0,0,0,0.06);
 			&:hover {
 				color: $color-3;
 				background-color: $color-7;
@@ -409,22 +491,47 @@ header {
 		}
 		.active {
       @include button($color-3,white);
+      &:hover {
+      	background-color: $color-3;
+      	color: white;
+      	font-weight: 500;
+      	cursor: default;
+      }
  		}
 	}
 	.close-btn {
 		position: absolute;
     right: 0;
     top: 0;
+    color: $color-5;
     -webkit-transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
     transition: color 100ms ease-in, -webkit-transform 100ms ease-in;
     transition: transform 100ms ease-in, color 100ms ease-in;
     transition: transform 100ms ease-in, color 100ms ease-in, -webkit-transform 100ms ease-in;
     &:hover {
     	cursor: pointer;
-    	color: red;
+    	color: $color-5 - 10;
     	-webkit-transform: scale(1.1);
     	        transform: scale(1.1);
     }
+	}
+}
+
+.signup-sec {
+	animation: {
+		name: modalfromright;
+		duration: 300ms;
+		timing-function: ease-in-out;
+		fill-mode: forwards;
+	}
+}
+
+.login-sec {
+	animation: {
+		name: modalfromleft;
+		duration: 300ms;
+		timing-function: ease-in-out;
+		fill-mode: forwards;
 	}
 }
 
@@ -463,8 +570,12 @@ header {
 }
 
 .styled-checkbox {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 
 .keep-me-logged-in {
@@ -501,6 +612,7 @@ header {
 			color: $color-2;
 			text-decoration: none;
 			font-size: 0.9em;
+			-webkit-transition: color 200ms ease-in;
 			transition: color 200ms ease-in;
 			&:hover {
 				color: $color-3;
@@ -585,10 +697,61 @@ header {
 	}
 }
 
+.forgot-password-sec {
+	width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  animation: {
+  	name: appearfrommiddle;
+  	duration: 300ms;
+  	timing-function: ease-in-out;
+  	fill-mode: forwards;
+  }
+  h1 {
+  	text-align: center;
+  	margin: 1em 0;
+  	@include heading;
+  	&:after {
+  		height: 0;
+  		width: 0;
+  	} 
+  }
 
-// =======================================================================================
-//      Dashboard-Questionnaire
-// =======================================================================================
+  p {
+  	@include parastyle;
+  	text-align: center;
+  	margin: 1.4em 0;
+  }
+
+  input[type="email"] {
+  	font-family: 'Montserrat';
+  	height: 3.2em;
+  	width: 100%;
+  	padding: 0 1em;
+  	font-size: 1em;
+  	margin: 3em 0 2em 0;
+  	&::-webkit-input-placeholder {
+  		font-family: 'Source Sans Pro';
+  		font-weight: 100;
+  	}
+  }
+
+  input[type="submit"] {
+  	@include button($color-7,$color-3);
+  	display: inline;
+  	border: 0;
+  	font-size: 1em;
+  	margin: 0 0 1.6em 0;
+  	&:hover {
+  		cursor: pointer;
+  	}
+  }
+}
+
+
+/* =======================================================================================*/
+/*      Dashboard-Questionnaire*/
+/* =======================================================================================*/
 
 .dashboard-wrapper {
 	margin-top: 6em;
@@ -752,9 +915,9 @@ header {
 	}
 }
 
-// =======================================================================================
-//      Dashboard-Statistics
-// =======================================================================================
+/* =======================================================================================*/
+/*      Dashboard-Statistics*/
+/* =======================================================================================*/
 
 .calendar-sec {
 	border-radius: $border-radius;
