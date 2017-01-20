@@ -63,6 +63,7 @@ module.exports = function(passport) {
             newUser.facebook.token = accessToken;
             newUser.facebook.name = profile.displayName;
             newUser.email = profile.emails[0].value;
+            newUser.photo = profile.photos[0].value;
             newUser.password = 'random';
             newUser.name = profile.displayName;
 
@@ -85,6 +86,7 @@ module.exports = function(passport) {
     },
     function(token, refreshToken, profile, done) {
       process.nextTick(function() {
+        console.log(profile);
         User.findOne({ 'google.id': profile.id }, function(err, user) {
           if(err) {return done(err); }
 
@@ -96,6 +98,7 @@ module.exports = function(passport) {
             newUser.google.token = token;
             newUser.google.name = profile.displayName;
             newUser.email = profile.emails[0].value;
+            newUser.photo = profile.photos[0].value;
             newUser.password = 'random';
             newUser.name = profile.displayName;
 
