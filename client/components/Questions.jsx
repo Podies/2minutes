@@ -35,7 +35,9 @@ class Questions extends Component {
 				  <div className="col-xs-8">
 					  <div className="all-questions">
 					    <div className="question-sec">
-					      <QuestionInput />
+					      <QuestionInput 
+					      	activeUser={this.props.activeUser}
+					      />
 					      <CheckedReview />
 					    </div>
 					    <SavedQuestions

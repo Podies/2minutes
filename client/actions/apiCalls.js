@@ -6,6 +6,10 @@ const fetchUserQuestionSet = (userId) => {
   return data;
 }
 
+const addNewQuestion = (data) => {
+  return axios.post('/users/question', data);
+}
+
 export {
-  fetchUserQuestionSet, 
+  fetchUserQuestionSet, addNewQuestion
 }
