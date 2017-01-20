@@ -18,7 +18,6 @@ const LoginInput = (props) => {
     if (!validator.isEmail(email.value)) {
       return props.handleLoginError('Invalid Email');
     }
-
     props.handleLogin({ email: email.value, password: password.value });
   };
 
@@ -28,50 +27,45 @@ const LoginInput = (props) => {
         <div>
           {props.loginError}
         </div>
-   			<form method="post" action="/users/login">
+   			<form method="post" onSubmit={handleLogin}>
    			 <fieldset className="login-input-sec">
    			   <div className="col-xs-12">
      			   <div className="col">
-	     			  <label>Email ID
-	     			   <input type="email" ref={(c) => { email = c; }} name="email" />
+	     			  <label className="email"><i className="fa fa-user-circle-o" aria-hidden="true"></i>
+	     			   <input type="email" ref={(c) => { email = c; }} name="email" placeholder="Email or Username"/>
 	     			  </label>
      			   </div>
    			   </div>
    			  <div className="col-xs-12">
      			  <div className="col align-link">
-	     			  <label className="password">Password
-	     			   <input type="password" ref={(c) => { password = c; }}name="password" />
+	     			  <label className="password"><i className="fa fa-key" aria-hidden="true"></i>
+	     			   <input type="password" ref={(c) => { password = c; }}name="password" placeholder="Enter Password"/>
                <a href="#" className="forgot-password" onClick={showForgotPassword}>Forgot Password ?</a>
 	     			  </label>
      			  </div>
    			  </div>
           <div className="col-xs-12">
-            <div className="col">
-              <label>
-               <input type="checkbox"/> Keep me logged in.
-              </label>
+            <div className="col styled-checkbox">
+               <input type="checkbox"/>
+               <label className="keep-me-logged-in">Remember Me</label>
             </div>
           </div>
    			  <div className="col-xs-12">
      			  <div className="col">
 	     			  <label>
-	     			   <input type="submit" name="submit" value="Log In" onClick={handleLogin}/>
+	     			   <input type="submit" name="submit" value="Log In" />
 	     			  </label>
      			  </div>
    			  </div>
    			 </fieldset>
-   		   <p>OR</p>
-   			 <fieldset className="">
-   			 <div className="col-xs-12">
-     			 <div className="col signupopt1">
-     			   <a href="/auth/google" className="">Log in With Google</a>
+   		   <p className="or">OR</p>
+   			 <fieldset className="alternate-options">
+     			 <div className="col-xs-12">
+       			 <div className="col ">
+       			   <a href="/auth/google" className="signupopt1">Log In With <i className="fa fa-google-plus" aria-hidden="true"></i></a>
+               <a href="/auth/facebook" className="signupopt2">Log In With <i className="fa fa-facebook" aria-hidden="true"></i></a>
+       			 </div>
      			 </div>
-   			 </div>
-   			 <div className="col-xs-12">
-     			 <div className="col signupopt2">
-     			  <a href="/auth/facebook" className="">log in With Facebook</a>
-     			 </div>
-   			 </div>
    			 </fieldset>
    			</form>
    		</div>

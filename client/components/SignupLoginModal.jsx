@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import LoginInput from './LoginInput';
 import SignupInput from './SignupInput';
 import ForgotPassword from './ForgotPassword';
+import axios from 'axios';
+import * as actions from '../actions/actions';
+import { connect } from 'react-redux';
 
 class SignupLoginModal extends Component {
   constructor(props){
@@ -11,6 +14,7 @@ class SignupLoginModal extends Component {
       loginError: '',
       signupError: '',
       forgotPasswordError: '',
+      successSignup: false,
     }
 
     this.showSignup = this.showSignup.bind(this);
@@ -19,6 +23,8 @@ class SignupLoginModal extends Component {
     this.handleLoginError = this.handleLoginError.bind(this);
     this.handleSignupError = this.handleSignupError.bind(this);
     this.handleForgotPasswordError = this.handleForgotPasswordError.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
   showLogin() {
     this.setState({ showComponent: 'login' });
@@ -29,14 +35,34 @@ class SignupLoginModal extends Component {
   showForgotPassword() {
     this.setState({ showComponent: 'forgot' });
   }
+
   handleLoginError(message) {
     this.setState({ loginError: message });
   }
+
   handleSignupError(message) {
     this.setState({ signupError: message });
   }
+
   handleForgotPasswordError(message) {
     this.setState({ forgotPasswordError: message });
+  }
+
+  handleLogin(data) {
+    axios.post('/users/login', data).then((res) => {
+      this.props.dispatch(actions.addActiveUser(res.data.user));
+      this.props.dispatch(actions.hideModal());
+    }).catch((err)=> {
+      this.setState({ loginError: err.response.data.message});
+    })
+  }
+
+  handleSignup(data) {
+    axios.post('/users/signup', data).then((res) => {
+      this.setState({ successSignup: true });
+    }).catch((err) => {
+      this.setState({ signupError: err.response.data});
+    });
   }
 
   render() {
@@ -60,6 +86,7 @@ class SignupLoginModal extends Component {
                 showForgotPassword={this.showForgotPassword}
                 handleLoginError={this.handleLoginError}
                 loginError={this.state.loginError}
+                handleLogin={this.handleLogin}
                 />
                 :
                 null
@@ -69,6 +96,8 @@ class SignupLoginModal extends Component {
               	<SignupInput
                 handleSignupError={this.handleSignupError}
                 signupError={this.state.signupError}
+                handleSignup={this.handleSignup}
+                successSignup={this.state.successSignup}
                 />
                 :
                 null
@@ -90,4 +119,4 @@ class SignupLoginModal extends Component {
   }
 }
 
-export default SignupLoginModal;
+export default connect()(SignupLoginModal);
