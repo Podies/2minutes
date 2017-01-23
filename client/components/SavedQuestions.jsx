@@ -9,7 +9,7 @@ const SavedQuestions = (props) => {
           return (
             <div key={i}>
               <h4>{question.name}</h4>
-              <p>{question.userPreference}</p>
+              <p>{question.userPreference.value}</p>
             </div>
           )     
         })
