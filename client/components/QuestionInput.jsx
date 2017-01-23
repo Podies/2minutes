@@ -39,24 +39,31 @@ class QuestionInput extends Component {
 	render(){
 		return(
 			<div className="row">
-			  <div className="col">
-		      <input type="text" className="question" name="name" ref={(c) => { this.question = c; }} placeholder="Eg.Talk to family members every week."/>
-		      <p className="delete">Delete this question.</p>
-				  <div className="expected-ans">
-				    <p>Expected Answer</p>
-				    <div>{this.state.questionError}</div>
-				    {/*<span className="yes-ans">Yes</span>
-				    		<span className="no-ans">No</span>*/}
-				    <div onChange={this.updateAnswer}>
-					    <input type="radio" name="expectedAnswer" value="true" checked={this.state.expectedAnswer == 'true' ? true : false} /> Yes
-				      <input type="radio" name="expectedAnswer" value="false" checked={this.state.expectedAnswer == 'false' ? true : false} /> No
-					    <div className="number-range">
+			  <div className="col-xs-12">
+				  <div className="col">
+			      <input type="text" className="question" name="name" ref={(c) => { this.question = c; }} placeholder="Eg.Talk to family members every week."/>
+			      <span className="question-action-sec">
+	             <span onClick={this.saveQuestion} className="save"><i className="fa fa-check" aria-hidden="true"></i>  Save</span>
+			      </span>
+					  <div className="expected-ans">
+					    <p>Your Expected Answer</p>
+					    <div>{this.state.questionError}</div>
+					    {/*<span className="yes-ans">Yes</span>
+					    		<span className="no-ans">No</span>*/}
+					   <div className="all-input-sec">
+					    <div onChange={this.updateAnswer} className="yes-no-toggle-sec">
+						    <input type="radio" name="expectedAnswer" value="true" id="switch_yes" checked={this.state.expectedAnswer == 'true' ? true : false} />
+						    <label htmlFor="switch_yes">Yes</label>
+					      <input type="radio" name="expectedAnswer" value="false" id="switch_no" checked={this.state.expectedAnswer == 'false' ? true : false} />
+					      <label htmlFor="switch_no">No</label>
+						  </div>
+						  <div className="number-range">
 					      <span>Number</span>
 					      <input type="number" name="expectedAnswer" id="number-input" min="1" />
 					    </div>
-				    	<button onClick={this.saveQuestion}>Save</button>
+						 </div>   
 					  </div>
-				  </div>
+					</div>
 				</div>
 			</div>
 		)

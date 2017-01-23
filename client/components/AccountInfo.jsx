@@ -17,7 +17,7 @@ class Accountinfo extends Component {
 
 	render() {
 		return (
-		  <div className="col-xs-10">
+		  <div className="col-xs-2">
 		    <div className="col">
 		      <div className="account-info" onClick={this.toggleDropDown}>
 		       <div className="user-name">
