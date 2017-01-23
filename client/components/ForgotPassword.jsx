@@ -14,7 +14,7 @@ const ForgotPassword = (props) => {
       props.handleForgotPasswordError('Invalid email.');
     }
 
-    props.handleForgotPassword({ email: email.value });
+    // {/*props.handleForgotPassword({ email: email.value });*/}
   }
 	return(
       <div className="forgot-password-sec">

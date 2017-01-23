@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actionCreator';
+import * as actions from '../actions/actions';
 import SignupLoginModal from '../components/SignupLoginModal';
 
 class App extends Component {

@@ -18,7 +18,6 @@ const LoginInput = (props) => {
     if (!validator.isEmail(email.value)) {
       return props.handleLoginError('Invalid Email');
     }
-
     props.handleLogin({ email: email.value, password: password.value });
   };
 
@@ -28,7 +27,7 @@ const LoginInput = (props) => {
         <div>
           {props.loginError}
         </div>
-   			<form method="post" action="/users/login">
+   			<form method="post" onSubmit={handleLogin}>
    			 <fieldset className="login-input-sec">
    			   <div className="col-xs-12">
      			   <div className="col">
@@ -54,7 +53,7 @@ const LoginInput = (props) => {
    			  <div className="col-xs-12">
      			  <div className="col">
 	     			  <label>
-	     			   <input type="submit" name="submit" value="Log In" onClick={handleLogin}/>
+	     			   <input type="submit" name="submit" value="Log In" />
 	     			  </label>
      			  </div>
    			  </div>

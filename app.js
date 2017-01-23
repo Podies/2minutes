@@ -10,6 +10,7 @@ var compiler = webpack(config);
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var User = require('./models/user');
 const MongoStore = require('connect-mongo')(session);
 mongoose.Promise = global.Promise;
 
@@ -59,21 +60,20 @@ app.use(passport.session());
 var passportService = require('./auth/passport')(passport);
 
 // Route handler
-app.use('/', routes);
+app.use('/auth', routes);
 app.use('/users', users);
 app.use('/api', api);
 
 app.use('*', function(req, res) {
-  res.render('index');
-});
-
-
-app.use('*', function(req, res) {
-  res.render('index');
-});
-
-app.use('*', function(req, res) {
-  res.render('index');
+  var initialState = { activeUser: null };
+  if(req.user) {
+    User.findById(req.user._id).select('-password').exec(function(err, user){
+      initialState.activeUser = user;
+      res.render('index', { title: '2 minutes', initialState });
+    });
+  } else {
+    res.render('index', { title: '2 minutes', initialState });
+  }
 });
 
 /// catch 404 and forwarding to error handler
