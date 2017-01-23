@@ -5,6 +5,7 @@ import { IndexLink } from 'react-router';
 import SignupLoginModal from './SignupLoginModal';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
+import DashboardNavList from './DashboardNavList';
 
 class Header extends Component {
 	constructor(props) {
@@ -38,6 +39,7 @@ class Header extends Component {
 						        </div>
 					        </div>
 				        </div>
+                <DashboardNavList />
 				        {
 				        	this.props.activeUser ? 
 				        		<AccountInfo userName={this.props.activeUser.name} />
