@@ -11,7 +11,8 @@ const questionSchema = Schema({
   answers: [{
     date: {type: Date, default:new Date()},
     answer: Schema.Types.Mixed
-  }]
+  }],
+  dateAdded: {type: Date, default: Date.now }
 });
 
 const Question = module.exports = mongoose.model('Question', questionSchema);
