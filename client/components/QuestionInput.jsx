@@ -7,6 +7,7 @@ class QuestionInput extends Component {
 		super(props);
 		this.state = {
 			expectedAnswer: '',
+			questionError: '',
 		}
 		this.saveQuestion = this.saveQuestion.bind(this);
 		this.updateAnswer = this.updateAnswer.bind(this);
@@ -14,9 +15,18 @@ class QuestionInput extends Component {
 
 	saveQuestion(e) {
 		e.preventDefault();
-		const userInput = { name: this.question.value, userPreference: this.state.expectedAnswer, userId: this.props.activeUser._id};
-		this.props.dispatch(actionCreators.addNewQuestion(userInput));
-		console.log(userInput);
+		if (!this.question.value || !this.state.expectedAnswer) {
+			if (!this.question.value) {
+				this.setState({ questionError: 'Question is needed'});
+			} else {
+				this.setState({ questionError: 'Expected answer is needed'});
+			}
+		} else {
+			const userInput = { name: this.question.value, userPreference: this.state.expectedAnswer, userId: this.props.activeUser._id };
+			this.props.dispatch(actionCreators.addNewQuestion(userInput));
+			this.question.value = '';
+			this.setState({ expectedAnswer: '' });
+		}
 	}
 
 	updateAnswer(e) {
@@ -34,11 +44,12 @@ class QuestionInput extends Component {
 		      <p className="delete">Delete this question.</p>
 				  <div className="expected-ans">
 				    <p>Expected Answer</p>
+				    <div>{this.state.questionError}</div>
 				    {/*<span className="yes-ans">Yes</span>
 				    		<span className="no-ans">No</span>*/}
 				    <div onChange={this.updateAnswer}>
-					    <input type="radio" name="expectedAnswer" value="yes" checked={this.state.expectedAnswer == 'yes' ? true : false} /> Yes
-				      <input type="radio" name="expectedAnswer" value="no" checked={this.state.expectedAnswer == 'no' ? true : false} /> No
+					    <input type="radio" name="expectedAnswer" value="true" checked={this.state.expectedAnswer == 'true' ? true : false} /> Yes
+				      <input type="radio" name="expectedAnswer" value="false" checked={this.state.expectedAnswer == 'false' ? true : false} /> No
 					    <div className="number-range">
 					      <span>Number</span>
 					      <input type="number" name="expectedAnswer" id="number-input" min="1" />
