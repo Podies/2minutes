@@ -62,7 +62,17 @@ router.post('/question', function(req, res) {
   var name = req.body.name;
   var userPreference = req.body.userPreference;
   var userId = req.body.userId;
-  // console.log("userId Field", userId);
+
+  if(userPreference == "true" || userPreference == "false") {
+    var type = "boolean"
+  } else {
+    if(isNaN(userPreference)) {
+      return res.status(400).send({"error": "Enter valid Number"});
+    } else {
+      type = "number" 
+    }
+  }
+  
   User.findOne({_id: userId}).exec(function(err, user) {
     // console.log(err, user);
     if(err) { throw err; }
@@ -71,12 +81,15 @@ router.post('/question', function(req, res) {
       var newQuestion = new Question({
         questionSetId: user.questionSetId,
         name: name,
-        userPreference: userPreference
+        'userPreference.type': type,
+        'userPreference.value': userPreference
       });
       newQuestion.save(function(err, savedQuestion) {
         if(err) { 
           throw err;
         } else {
+          // send response back with the question.
+          res.json({ question: savedQuestion });
           QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, set) {
             var questionfromSet = set.questions;
             questionfromSet.push(savedQuestion._id);
@@ -95,7 +108,8 @@ router.post('/question', function(req, res) {
 
       var newQuestion = new Question({
         name: name,
-        userPreference: userPreference,
+        'userPreference.type': type,
+        'userPreference.value': userPreference,
         questionSetId: newQuestionSet._id
       });
 
@@ -110,7 +124,7 @@ router.post('/question', function(req, res) {
             // console.log('saved NewQuestionSet', savedQuestionSet);
             user.questionSetId = savedQuestionSet._id;
             user.save();
-            console.log("user updated", user);
+            res.json({ question: savedQuestion });
           })
         }
 

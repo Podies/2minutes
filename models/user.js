@@ -6,6 +6,7 @@ const userSchema = Schema({
   email: {type: String, unique: true, lowercase: true},
   name: String,
   password: String,
+  photo: String,
   facebook: {
     id: String, default: '',
     token: String,
@@ -17,7 +18,8 @@ const userSchema = Schema({
     name: String
   },
   questionSetId:{type: Schema.Types.ObjectId, ref: 'QuestionSet'},
-  resultId: {type: Schema.Types.ObjectId, ref: 'Result'}
+  resultId: {type: Schema.Types.ObjectId, ref: 'Result'},
+  dateAdded: {type: Date, default: Date.now }
 });
 
 //On Save User, encrypt password
