@@ -7,7 +7,7 @@ const SavedQuestions = (props) => {
       props.questions.length > 0 ?
         props.questions.map((question, i) => {
           return (
-            <div className="row">
+            <div className="row" key={i}>
               <div className="col-xs-1">
               </div>
               <div className="col-xs-10 saved-question">

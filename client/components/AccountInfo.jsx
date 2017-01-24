@@ -24,7 +24,7 @@ class Accountinfo extends Component {
 		        <p>Hi, {this.props.userName.split(' ')[0]}</p>
 		       </div>
 		       <div className="profile-img">
-		        <img src="../images/IMG-20160101-WA0020.jpg"/>
+		        <img src="../images/sachin.png"/>
 		       </div>
 		       {
 		       	this.state.showDropDown ? <UserDropDown /> : null
