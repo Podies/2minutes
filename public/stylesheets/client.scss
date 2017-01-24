@@ -15,6 +15,7 @@ $color-4: #cccccc;
 $color-5: #909090;
 $color-6: #49c349;
 $color-7: #f5f5f5;
+$color-8: #716496;
 $border-radius: 0;
 $line-height: 1.6em;
 $header-txt: 'Montserrat';
@@ -120,7 +121,7 @@ $para-txt: 'Source Sans Pro';
 
 @mixin submitbtn {
 	border: none;
-	@include button($color-7,$color-3);
+	@include button($color-7 - 10,$color-3);
 	font-size: 1em;
 	width: 50%;
 	margin: 0 auto;
@@ -799,7 +800,7 @@ header {
 /* =======================================================================================*/
 
 .dashboard-wrapper {
-	margin-top: 4.2em;
+	margin-top: 5em;
 }
 
 .date-sec {
@@ -877,7 +878,7 @@ header {
 		font-family: 'Open Sans';
     outline: 0;
     width: 100%;
-    font-size: 1.6em;
+    font-size: 1.4em;
     font-weight: 400;
     color: #545454;
     border: none;
@@ -904,28 +905,44 @@ header {
   }
 
   .delete {
+  	font-family: $header-txt;
 		color: $color-3;
-		font-size: 0.9em;
+		font-size: 0.8em;
+		border: 1px solid $color-3;
+		transition: {
+  		property: background-color, color;
+  		duration: 250ms, 250ms;
+  		timing-function: ease-in-out, ease-in-out;
+  	}
 		&:hover {
 			background-color: $color-3;
 		}
   }
 
   .save {
+  	font-family: $header-txt;
+  	font-size: 0.8em;
+  	border: 1px solid $color-6;
   	color: $color-6;
+  	transition: {
+  		property: background-color, color;
+  		duration: 250ms, 250ms;
+  		timing-function: ease-in-out, ease-in-out;
+  	}
   	&:hover {
   		background-color: $color-6;
+  		border: 0;
   	}
   }
 }
 
 
 .expected-ans {
-	border-collapse: separate;
 	margin: 1em 0 0 0;
 	p {
 		font-family: $header-txt;
     color: $color-3;
+    font-size: 0.9em; 
     margin-bottom: 1em;
     padding-bottom: 0.4em;
 	}
@@ -939,19 +956,21 @@ header {
       margin-left: 0.8em;
       border: 1px solid grey;
 		}
-	}
 
-	span {
+		span {
 		color: $color-2;
+		font-size: 0.9em;
+	  }
 	}
 }
 
 .page-intro {
+	text-align: center;
 	margin: 0.8em 0;
 	margin-top: 0;
 	font-family: 'Open Sans';
 	color: $color-2;
-	font-size: 2.4em;
+	font-size: 1.6em;
 	line-height: 1.4em;
 	font-weight: 300;
 }
@@ -967,16 +986,17 @@ header {
 	justify-content: space-around;
 	width: 8em;
 	height: 2.2em;
-	background-color: $color-4;
+	background-color: $color-5;
 
 	input {
 		display: none;
 	}
 
 	label {
+		font-size: 0.9em;
 		color: white;
 		display: inline-block;
-		padding: 0.6em 1.4em;
+		padding: 0.8em 1.6em;
 		box-shadow: inset 0 1px 3px rgba(black, 0.3);
 		transition: background-color 300ms ease-in-out;
 		&:hover {
@@ -993,11 +1013,10 @@ header {
 .saved-question {
 	position: relative;
 	margin-top: 2em;
-	background-color: white;
-	border: 1px solid rgba($color-4, 0.5);
+	background-color: rgba($color-2, 0.2);
 	.question-heading {
 		font-family: $header-txt;
-		font-size: 1.4em;
+		font-size: 1.2em;
 		color: $color-5;
 	}
 	.your-expected-answer {
@@ -1058,6 +1077,106 @@ header {
 	      	}
 	      }
 			}
+		}
+	}
+}
+
+/* =======================================================================================*/
+/*      User Profile Section*/
+/* =======================================================================================*/
+
+.extended-profile-section {
+	background-color: $color-1;
+	background-image: -webkit-linear-gradient(top, $color-1, rgba($color-2,0.2));
+	background-image: linear-gradient(to bottom, $color-1, rgba($color-2,0.2));
+	height: 93vh;
+}
+
+.userinfo-sec {
+	padding: 1em;
+	position: relative;
+	background-color: white;
+	color: $color-2;
+	margin-top: 8em;
+  @include boxshadow(black);
+
+	.user-profile-save-btn {
+		text-align: center;
+		input[type="submit"]{
+			@include submitbtn;
+		}
+	}
+
+	table {
+		width: 100%;
+	}
+
+  .img-sec {
+  	position: relative;
+  	img {
+  		width: 100%;
+  	}
+    
+    i {
+    	position: absolute;
+    	font-size: 2em;
+    	color: rgba(black, 0.4);
+    	bottom: 0.6em;
+    	right: 0.6em;
+    	transition: color 200ms ease-in-out;
+    	&:hover {
+    		cursor: pointer;
+    		color: rgba(black, 0.8);
+    	}
+    } 
+  }
+
+  th {
+  	text-align: left;
+  	font-family: $header-txt;
+  	color: $color-3;
+  	border: 1px solid $color-4 + 20;
+  	padding: 1.2em 1.8em;
+  }
+
+  tr{
+  	input[type="password"] {
+  		border: 1px solid $color-7 - 10;
+  		padding-left: 0.4em;
+  		font-size: 1em;
+      height: 2.4em;
+  	}
+    &:nth-child(2n) {
+    	background-color: $color-7;
+    }
+  }
+
+	td {
+		font-size: 0.9em;
+		padding: 1.2em 2em;
+		border: 1px solid $color-4 + 20;
+	}
+
+	.edit-profile {
+		padding: 0.8em;
+		opacity: 0.6;
+		position: absolute;
+		bottom: 1.4em;
+		right: 2.2em;
+		transition: opacity 200ms ease-in-out;
+		&:hover {
+			cursor: pointer;
+      opacity: 1;
+      background-color: $color-7 - 10;
+		}
+		&:after {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 3px;
+			top: 100%;
+			left: 0;
+			background-color: $color-4;
 		}
 	}
 }
