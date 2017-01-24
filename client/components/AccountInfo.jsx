@@ -8,18 +8,29 @@ class Accountinfo extends Component {
 			showDropDown: false,
 		}
 		this.toggleDropDown = this.toggleDropDown.bind(this);
+		this.handleBodyClick = this.handleBodyClick.bind(this);
 	}
 
 	toggleDropDown() {
     this.setState({ showDropDown: !this.state.showDropDown });
-    console.log('called')
+  }
+
+  handleBodyClick(e) {
+  	e.preventDefault();
+    if (this.state.showDropDown) {
+      this.setState({ showDropDown: false });
+    }
+  }
+    
+  componentWillMount() {
+    window.addEventListener("click", this.handleBodyClick, true);
   }
 
 	render() {
 		return (
 		  <div className="col-xs-2">
 		    <div className="col">
-		      <div className="account-info" onClick={this.toggleDropDown}>
+		      <div className="account-info" onClick={this.toggleDropDown} >
 		       <div className="user-name">
 		        <p>Hi, {this.props.userName.split(' ')[0]}</p>
 		       </div>
