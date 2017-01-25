@@ -52,7 +52,7 @@ module.exports = function(passport) {
     },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
-        User.findOne({ email: profile.emails[0].value }, function(err, user) {
+        User.findOne({ 'facebook.id': profile.id }, function(err, user) {
           if(err) {return done(err); }
 
           if(user) {
@@ -86,7 +86,6 @@ module.exports = function(passport) {
     },
     function(token, refreshToken, profile, done) {
       process.nextTick(function() {
-        // protect if no email provided.
         if(!profile.emails[0].value) {
           return res.status(404).send({error: "No email Linked to Facebook"});
         }

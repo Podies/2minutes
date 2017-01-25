@@ -25,6 +25,13 @@ const addUserQuestionSet = (data) => {
   };
 };
 
+const addNewQuestion = (data) => {
+  return {
+    type: 'ADDED_NEW_QUESTION',
+    data,
+  };
+}
+
 export {
-  showModal, hideModal, addActiveUser, addUserQuestionSet
+  showModal, hideModal, addActiveUser, addUserQuestionSet, addNewQuestion
 };

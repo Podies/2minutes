@@ -9,11 +9,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/questionset/:userId', function(req, res) {
-  QuestionSet.findOne({userId: req.params.userId}).populate('questions', 'name userPreference').exec(function(err, set) {
+  QuestionSet.findOne({userId: req.params.userId}).populate('questions', 'name userPreference dateAdded', null, {sort: { 'dateAdded': -1 }}).exec(function(err, set) {
     if(err) {
       throw err;
     } else {
-      res.json({questionSet: set});
+      res.json({questionSet: set || { questions: [] } });
     }
   });
 });

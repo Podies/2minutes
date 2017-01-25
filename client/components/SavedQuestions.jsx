@@ -7,9 +7,22 @@ const SavedQuestions = (props) => {
       props.questions.length > 0 ?
         props.questions.map((question, i) => {
           return (
-            <div key={i}>
-              <h4>{question.name}</h4>
-              <p>{question.userPreference}</p>
+            <div className="row" key={i}>
+              <div className="col-xs-1">
+              </div>
+              <div className="col-xs-10 saved-question">
+                <div className="col">
+                  <div className="" key={i}>
+                     <h1 className="question-heading">{question.name}</h1>
+                     <p className="your-expected-answer">{question.userPreference.value}</p>
+                  </div>
+                  <span className="question-action-sec">
+                     <span className="delete"><i className="fa fa-trash-o" aria-hidden="true"></i>  Delete</span>
+                  </span>
+                </div>
+              </div>
+              <div className="col-xs-1">
+              </div>
             </div>
           )     
         })
