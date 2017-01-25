@@ -8,26 +8,40 @@ class Accountinfo extends Component {
 			showDropDown: false,
 		}
 		this.toggleDropDown = this.toggleDropDown.bind(this);
+		this.handleBodyClick = this.handleBodyClick.bind(this);
 	}
 
 	toggleDropDown() {
     this.setState({ showDropDown: !this.state.showDropDown });
-    console.log('called')
+  }
+
+  handleBodyClick(e) {
+    console.log(e.target);
+    const userDropdown = document.getElementById('user-dropdown');
+    if(!userDropdown) {
+      return;
+    } else if (!userDropdown.contains(e.target)) {
+      this.setState({ showDropDown: false });
+    }
+  }
+    
+  componentDidMount() {
+    // window.addEventListener("click", this.handleBodyClick, true);
   }
 
 	render() {
 		return (
 		  <div className="col-xs-2">
 		    <div className="col">
-		      <div className="account-info" onClick={this.toggleDropDown}>
+		      <div className="account-info" onClick={this.toggleDropDown} >
 		       <div className="user-name">
 		        <p>Hi, {this.props.userName.split(' ')[0]}</p>
 		       </div>
 		       <div className="profile-img">
-		        <img src="../images/sachin.png"/>
+		        <img src={this.props.photo} />
 		       </div>
 		       {
-		       	this.state.showDropDown ? <UserDropDown /> : null
+		       	this.state.showDropDown ? <UserDropDown toggleDropDown={this.toggleDropDown} /> : null
 		       }
 		      </div>
 		    </div>

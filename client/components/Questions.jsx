@@ -12,8 +12,12 @@ class Questions extends Component {
 		super(props);
 	}
 
-	componentWillMount() {	
-		this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
+	componentWillMount() {
+		if (this.props.activeUser) {
+			this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
+		} else {
+			return this.context.router.push('/');
+		}
 	}
 
 	render() {
@@ -50,6 +54,10 @@ class Questions extends Component {
 			</div>
 		)
 	}
+}
+
+Questions.contextTypes = {
+  router: React.PropTypes.object.isRequired,
 }
 
 function mapStateToProps(store) {
