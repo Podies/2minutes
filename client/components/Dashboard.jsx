@@ -4,6 +4,7 @@ import Calendar from './Calendar';
 import Questions from './Questions';
 import Footer from './Footer';
 
+
 const Dashboard = () => {
 	return (
 	<div>
@@ -11,7 +12,7 @@ const Dashboard = () => {
     	<div className="grid">
     	  <div className="row">
 	    	  <div className="col-xs-12 dashboard-wrapper">
-		    	  <Questions />
+		    	   <Questions />
             {/*<Calendar />*/}
 	    	  </div>
     	  </div>

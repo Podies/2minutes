@@ -840,7 +840,7 @@ header {
 			a {
 				text-decoration: none;
 				color: $color-2;
-				padding: 0 1em 2em 1em;
+				padding: 0 1em 1.9em 1em;
 				font-family: $header-txt;
 				font-size: 0.9em;
 			}
@@ -875,12 +875,12 @@ header {
 	box-shadow: 20px 0 100px rgba(black, 0.05), 0 20px 100px rgba(black, 0.05), 0 -20px 100px rgba(black, 0.05), -20px 0 100px rgba(black, 0.05);
 
 	input[type="text"] {
-		font-family: 'Open Sans';
+		font-family: $para-txt;
     outline: 0;
     width: 100%;
     font-size: 1.4em;
     font-weight: 400;
-    color: #545454;
+    color: $color-5;
     border: none;
     margin-top: 1em;
     border-bottom: 1px solid rgba(#999999, 0.2);
@@ -954,7 +954,7 @@ header {
       height: 2.6em;
       padding-left: 0.4em;
       margin-left: 0.8em;
-      border: 1px solid grey;
+      border: 1px solid $color-4;
 		}
 
 		span {
@@ -1017,13 +1017,33 @@ header {
 	.question-heading {
 		font-family: $header-txt;
 		font-size: 1.2em;
-		color: $color-5;
+		color: $color-2;
 	}
 	.your-expected-answer {
 		margin-top: 1em;
-		color: $color-5;
+		color: $color-2;
 	}
 }
+
+/* =======================================================================================*/
+/*      Dashboard-Statistics*/
+/* =======================================================================================*/
+
+.feedback-greeting {
+	@extend .page-intro;
+}
+
+.active-question-head {
+	font-family: $header-txt;
+	font-size: 1.4em;
+	font-weight: 400;
+	color: $color-2;
+}
+
+.your-ans {
+	@extend .expected-ans;
+}
+
 
 /* =======================================================================================*/
 /*      Dashboard-Statistics*/

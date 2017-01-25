@@ -5,7 +5,9 @@ import * as api from '../actions/apiCalls';
 import SavedQuestions from './SavedQuestions';
 import { connect } from 'react-redux';
 import * as actionCreator from '../actions/index';
-
+import ReviewQuestions from './ReviewQuestions';
+import UserGreetingReviewSession from './UserGreetingReviewSession';
+import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
 class Questions extends Component {
 	constructor(props){
@@ -33,21 +35,24 @@ class Questions extends Component {
 		    </div>*/}
 				<div className="row">
 				  <div className="col-xs-12">
-				  <NewUserQuestion />
+				  <UserGreetingReviewSession />
+				  {/*<NewUserQuestion />*/}
 				  </div>
 				</div>
 				<div className="row">
 				  <div className="col-xs-12">
 					  <div className="all-questions">
 					    <div className="question-sec">
-					      <QuestionInput 
+					       <ReviewQuestions />
+					      {/*<QuestionInput 
 					      	activeUser={this.props.activeUser}
 					      	dispatch={this.props.dispatch}
-					      />
+					      />*/}
 					    </div>
-					    <SavedQuestions
+              <SavedQuestionsReviewSession/>
+					    {/*<SavedQuestions
 					    	questions={this.props.userQuestions.questions}
-					    />
+					    />*/}
 					  </div>
 				  </div>
 				</div>
