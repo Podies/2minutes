@@ -130,6 +130,12 @@ router.post('/login',function(req, res, next){
   })(req, res, next);
 }); 
 
+//Logout
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 // Saving Questions to Database.
 router.post('/question', function(req, res) {
   var name = req.body.name;
