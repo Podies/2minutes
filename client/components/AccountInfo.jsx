@@ -16,14 +16,17 @@ class Accountinfo extends Component {
   }
 
   handleBodyClick(e) {
-  	e.preventDefault();
-    if (this.state.showDropDown) {
+    console.log(e.target);
+    const userDropdown = document.getElementById('user-dropdown');
+    if(!userDropdown) {
+      return;
+    } else if (!userDropdown.contains(e.target)) {
       this.setState({ showDropDown: false });
     }
   }
     
-  componentWillMount() {
-    window.addEventListener("click", this.handleBodyClick, true);
+  componentDidMount() {
+    // window.addEventListener("click", this.handleBodyClick, true);
   }
 
 	render() {
@@ -35,10 +38,10 @@ class Accountinfo extends Component {
 		        <p>Hi, {this.props.userName.split(' ')[0]}</p>
 		       </div>
 		       <div className="profile-img">
-		        <img src="../images/IMG-20160101-WA0020.jpg"/>
+		        <img src={this.props.photo} />
 		       </div>
 		       {
-		       	this.state.showDropDown ? <UserDropDown /> : null
+		       	this.state.showDropDown ? <UserDropDown toggleDropDown={this.toggleDropDown} /> : null
 		       }
 		      </div>
 		    </div>

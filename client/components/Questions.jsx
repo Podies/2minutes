@@ -12,21 +12,25 @@ class Questions extends Component {
 		super(props);
 	}
 
-	componentWillMount() {	
-		this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
+	componentWillMount() {
+		if (this.props.activeUser) {
+			this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
+		} else {
+			return this.context.router.push('/');
+		}
 	}
 
 	render() {
 		return(
 		  <div>
-		    <div className="col-xs-11">
+		    {/*<div className="col-xs-11">
 		    </div>
 		    <div className="col-xs-1">
 			    <div className="col  date-sec">
 			      <p className="month-name">January,</p>
 			      <p className="daily-date">21<sup>st</sup></p>
 			    </div>
-		    </div>
+		    </div>*/}
 				<div className="row">
 				  <div className="col-xs-12">
 				  <NewUserQuestion />
@@ -50,6 +54,10 @@ class Questions extends Component {
 			</div>
 		)
 	}
+}
+
+Questions.contextTypes = {
+  router: React.PropTypes.object.isRequired,
 }
 
 function mapStateToProps(store) {

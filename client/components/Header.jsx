@@ -42,7 +42,7 @@ class Header extends Component {
                 <DashboardNavList />
 				        {
 				        	this.props.activeUser ? 
-				        		<AccountInfo userName={this.props.activeUser.name} />
+				        		<AccountInfo userName={this.props.activeUser.name} photo={this.props.activeUser.photo}/>
 				        		:
 				      			<SignupButton showLoginModal={this.showLoginModal}/>
 				        }
