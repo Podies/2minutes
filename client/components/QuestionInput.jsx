@@ -30,7 +30,7 @@ class QuestionInput extends Component {
 	}
 
 	updateAnswer(e) {
-		if(e.target.value == 'yes' || e.target.value == 'no') {
+		if(e.target.value == 'true' || e.target.value == 'false') {
 			document.getElementById('number-input').value = '';
 		}
 		this.setState({ expectedAnswer: e.target.value });

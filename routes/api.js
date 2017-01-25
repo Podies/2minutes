@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Question = require('../models/question');
-var QuestionSet = require('../models/questionSet')
+var QuestionSet = require('../models/questionSet');
+var User = require('../models/user');
 
 router.get('/', function(req, res) {
   res.json({api:"Api here"});
@@ -30,7 +31,7 @@ router.post('/answer/:questionId', function(req, res) {
         // check for today's date.
         //  - yes, override that
         question.answers.forEach(function(answer) {
-          console.log(answer.date, new Date(currentDate).toISOString(), typeof answer.date, typeof new Date(currentDate) ,'called');
+           console.log(answer.date, new Date(currentDate).toISOString(), typeof answer.date, typeof new Date(currentDate) ,'called');
           if(answer.date.toString() == new Date(currentDate).toString()){
             answer.answer = solution;
 
@@ -61,6 +62,63 @@ router.post('/answer/:questionId', function(req, res) {
       
     }
   })
+});
+
+router.get('/result/daily/:userId', function(req, res) {
+  var date = req.body.date;
+  var userId = req.params.userId;
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, questionSet) {
+      if(err) { throw err; }
+      var total = questionSet.questions.length;
+      // questionSet.questions.forEach(function(question) {
+      //   Question.findOne({_id: question}).exec(function(err, single) {
+      //     single.answers.forEach(function(answer) {
+      //       // console.log(typeof answer.date, typeof new Date("2001-01-22T18:30:00.000Z"), "date check" );
+      //       if(answer.date.toString() == new Date("2001-01-22T18:30:00.000Z").toString()){
+      //          if(single.userPreference.type == "boolean") {
+      //           if(single.userPreference.value == answer.answer) {
+      //             correct++;
+                  
+      //           }
+      //          } else {
+      //           if(answer.answer >= single.userPreference.value) {
+      //             correct++;
+      //             console.log(correct);
+      //           }
+      //          }
+      //       } else {
+      //         // return res.status(400).send({message:"No Question Answered on this date"});
+      //       }
+      //     });
+      //   });
+      // });
+
+      Question.find({ _id: { $in: questionSet.questions }}).exec(function(err, questions){
+        var correct = 0;
+        questions.forEach(function(single, i){
+          single.answers.forEach(function(answer){
+            if(answer.date.toString() == new Date("2001-01-22T18:30:00.000Z").toString()){
+              if(single.userPreference.type == "boolean") {
+                if(single.userPreference.value == answer.answer) {
+                  correct++;
+                }
+               } else {
+                if(answer.answer >= single.userPreference.value) {
+                  correct++;
+                }
+               }
+            } else {
+              // return res.status(400).send({message:"No Question Answered on this date"});
+            }
+          })
+        });
+         var percentage = (correct * 100)/total;
+         console.log(correct, total, "Correct Score is", percentage+ "%");
+      });
+    });
+  });
 });
 
 

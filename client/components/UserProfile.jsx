@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { connect } from 'react-redux';
 
 
-const UserProfile = () => {
+const UserProfile = (props) => {
 	return(
     <div>
       <Header />
@@ -14,7 +15,7 @@ const UserProfile = () => {
             <div className="col-xs-8 userinfo-sec">
 	            <div className="col-xs-4">
 	              <div className="col img-sec">
-	                <img src="../images/sachin.png"/>
+	                <img src={props.activeUser.photo} alt={props.activeUser.name} />
 	                <span><i className="fa fa-camera" aria-hidden="true"></i></span>
 	              </div>
 	            </div>
@@ -23,13 +24,13 @@ const UserProfile = () => {
 		              <table>
 		                <thead>
 			                <tr>
-			                  <th scope="col" colSpan="2">Sachin Kumaar</th>
+			                  <th scope="col" colSpan="2">{props.activeUser.name}</th>
 			                </tr>
 			              </thead>
 			              <tbody>
 			                <tr>
 			                  <td>Registered Email ID:</td>
-			                  <td>sachinkumaar91@gmail.com</td>
+			                  <td>{props.activeUser.email}</td>
 			                </tr>
 			                <tr>
 			                  <td>Password: </td>
@@ -61,4 +62,9 @@ const UserProfile = () => {
 	)
 }
 
-export default UserProfile;
+function mapStateToProps(store) {
+  return {
+    activeUser: store.activeUser
+  }
+}
+export default connect(mapStateToProps)(UserProfile);

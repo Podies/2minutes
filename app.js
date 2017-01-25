@@ -10,7 +10,10 @@ var compiler = webpack(config);
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
+var elastic = require('elastic-email-api');
 var User = require('./models/user');
+var TempUser = require('./models/tempUser');
 const MongoStore = require('connect-mongo')(session);
 mongoose.Promise = global.Promise;
 
@@ -24,6 +27,9 @@ var api = require('./routes/api');
 
 
 var app = express();
+
+//Generate random token
+var token = randomToken(16);
 
 /* eslint-disable */
 app.use(require('webpack-dev-middleware')(compiler, {
