@@ -8,3 +8,14 @@
 - send response question details.
 
   req.body.userId (API) req.user._id()
+
+Elastic Email
+f6139ea0-5df6-4bdf-ac0d-4d369af95b06 - API_KEY
+b3b2c2ae-1767-4d68-b14f-48ea799eac48 - PUBLIC_ACCOUNT_ID
+f6139ea0-5df6-4bdf-ac0d-4d369af95b06 - Password SMTP
+
+
+// Upon Signup, Create a Temp user.
+// Send mail, with a link to verify. Store this hash.
+// Post request with token. If successful, then move tempUser to Permanent User.
+// 
