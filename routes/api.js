@@ -24,14 +24,27 @@ router.post('/answer/:questionId', function(req, res) {
   Question.findOne({_id: questionId}).exec(function(err, question) {
     if(err) {
       throw err;
-    } else {
+    }
+
+    if(!question) {
+      return res.status(400).send({message: "No Question Found."});
+    } 
+    else {
+
+      if(!solution) {
+        if(question.userPreference.type == "boolean"){
+          solution = question.userPreference.value === "true" ? "false" : "true" ;
+        } else {
+          solution = 0;
+        }
+      }
       var currentDate = (new Date()).toString().slice(0,10);
       // check if question.answers exist.
       if(question.answers[0]){
         // check for today's date.
         //  - yes, override that
         question.answers.forEach(function(answer) {
-           console.log(answer.date, new Date(currentDate).toISOString(), typeof answer.date, typeof new Date(currentDate) ,'called');
+          // console.log(answer.date, new Date(currentDate).toISOString(), typeof answer.date, typeof new Date(currentDate) ,'called');
           if(answer.date.toString() == new Date(currentDate).toString()){
             answer.answer = solution;
 
@@ -39,7 +52,8 @@ router.post('/answer/:questionId', function(req, res) {
               if(err) {
                throw err;
               }
-              console.log("Overritten answer", savedAnswer);
+              // console.log("OverWitten answer", savedAnswer);
+              res.json({question: savedAnswer});
             });
           }
         });
@@ -55,6 +69,7 @@ router.post('/answer/:questionId', function(req, res) {
             throw err;
           }
           console.log("New answer Saved", savedAnswer);
+          res.json({question: savedAnswer});
         });
       }
       
@@ -69,6 +84,9 @@ router.get('/result/daily/:userId', function(req, res) {
   var userId = req.params.userId;
   User.findOne({_id: userId}).exec(function(err, user) {
     if(err) { throw err; }
+    if(!user) {
+      return res.status(400).send({message: "No User Found."});
+    }
     QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, questionSet) {
       if(err) { throw err; }
       var total = questionSet.questions.length;
@@ -99,7 +117,7 @@ router.get('/result/daily/:userId', function(req, res) {
         var correct = 0;
         questions.forEach(function(single, i){
           single.answers.forEach(function(answer){
-            if(answer.date.toString() == new Date("2001-01-22T18:30:00.000Z").toString()){
+            if(answer.date.toString() == new Date("2001-01-24T18:30:00.000Z").toString()){
               if(single.userPreference.type == "boolean") {
                 if(single.userPreference.value == answer.answer) {
                   correct++;
@@ -116,6 +134,7 @@ router.get('/result/daily/:userId', function(req, res) {
         });
          var percentage = (correct * 100)/total;
          console.log(correct, total, "Correct Score is", percentage+ "%");
+         res.json({"Correct Score in Percentage: ": percentage});
       });
     });
   });
