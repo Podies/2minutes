@@ -30,8 +30,8 @@ const addNewQuestion = (data) => {
     type: 'ADDED_NEW_QUESTION',
     data,
   };
-}
+};
 
 export {
-  showModal, hideModal, addActiveUser, addUserQuestionSet, addNewQuestion
+  showModal, hideModal, addActiveUser, addUserQuestionSet, addNewQuestion,
 };

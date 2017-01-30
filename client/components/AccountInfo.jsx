@@ -16,7 +16,6 @@ class Accountinfo extends Component {
   }
 
   handleBodyClick(e) {
-    console.log(e.target);
     const userDropdown = document.getElementById('user-dropdown');
     if(!userDropdown) {
       return;

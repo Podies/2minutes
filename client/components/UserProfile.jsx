@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { connect } from 'react-redux';
+import * as actionCreators from '../actions/index';
 
 class UserProfile extends Component {
   constructor(props){
@@ -9,6 +10,7 @@ class UserProfile extends Component {
     this.state = {
       showEditPassword: false,
       changePasswordError: '',
+      changePasswordSuccess: '',
     };
 
     this.showEditPassword = this.showEditPassword.bind(this);
@@ -36,7 +38,15 @@ class UserProfile extends Component {
     if (newPassword.length < 8) {
       this.setState({ changePasswordError: 'Pasword length should be atleast 8 characters.'})
     }
-    
+    this.props.dispatch(actionCreators.
+      changePassword({ password: currentPassword, newPassword: newPassword, confirmPassword: confirmNewPassword}))
+      .then((res) => {
+        if (res.status == 400) {
+          this.setState({changePasswordError: res.data.message});
+        } else {
+          this.setState({ changePasswordSuccess: 'Password Updated', showEditPassword: false});
+        }
+      });
   }
 
   render() {
@@ -99,6 +109,7 @@ class UserProfile extends Component {
                       }
                     </table>
                     <div>{this.state.changePasswordError}</div>
+                    <div>{this.state.changePasswordSuccess}</div>
                     <div className="col user-profile-save-btn">
                       <input type="submit" value="Save" onClick={this.changePassword} />
                     </div>

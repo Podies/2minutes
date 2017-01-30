@@ -14,7 +14,7 @@ const fetchUserQuestionSet = (userId) => {
 };
 
 const addNewQuestion = (data) => {
-  return (dispatch)=> {
+  return (dispatch) => {
     return apiCalls.addNewQuestion(data)
       .then((res) => {
         dispatch(actions.addNewQuestion(res.data.question))
@@ -25,6 +25,21 @@ const addNewQuestion = (data) => {
   };
 };
 
+const changePassword = (data) => {
+  return (dispatch) => {
+    return apiCalls.changePassword(data)
+    .then(
+      (res) => {
+        // console.log(res.data);
+        return true;
+      },
+      (err) => {
+        return err.response;
+      },
+    );
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion
-}
+  fetchUserQuestionSet, addNewQuestion, changePassword,
+};
