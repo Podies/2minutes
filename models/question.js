@@ -9,7 +9,7 @@ const questionSchema = Schema({
     value: Schema.Types.Mixed,
   },
   answers: [{
-    date: {type: Date, default: Date.now },
+    date: { type: Date, default: Date.now },
     answer: Schema.Types.Mixed
   }],
   dateAdded: { type: Date, default: Date.now }
