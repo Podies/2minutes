@@ -51,6 +51,7 @@ class SignupLoginModal extends Component {
   handleLogin(data) {
     axios.post('/users/login', data).then((res) => {
       this.props.dispatch(actions.addActiveUser(res.data.user));
+      console.log(res.data.user);
       this.props.dispatch(actions.hideModal());
     }).catch((err)=> {
       this.setState({ loginError: err.response.data.message});
