@@ -25,14 +25,6 @@ class Questions extends Component {
 	render() {
 		return(
 		  <div>
-		    {/*<div className="col-xs-11">
-		    </div>
-		    <div className="col-xs-1">
-			    <div className="col  date-sec">
-			      <p className="month-name">January,</p>
-			      <p className="daily-date">21<sup>st</sup></p>
-			    </div>
-		    </div>*/}
 				<div className="row">
 				  <div className="col-xs-12">
 				  <UserGreetingReviewSession />
