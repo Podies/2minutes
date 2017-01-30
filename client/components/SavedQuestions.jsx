@@ -1,6 +1,16 @@
 import React from 'react';
 
 const SavedQuestions = (props) => {
+  const handleUserPreference = (userPreferencevalue) => {
+    switch (userPreferencevalue) {
+      case "true":
+        return "Yes";
+      case "false":
+        return "No";
+      default:
+        return userPreferencevalue;
+    }
+  }
   return (
     <div>
     {
@@ -14,7 +24,11 @@ const SavedQuestions = (props) => {
                 <div className="col">
                   <div className="" key={i}>
                      <h1 className="question-heading">{question.name}</h1>
-                     <p className="your-expected-answer">{question.userPreference.value}</p>
+                     <p className="your-expected-answer">
+                     {
+                      handleUserPreference(question.userPreference.value)
+                     }
+                     </p>
                   </div>
                   <span className="question-action-sec">
                      <span className="delete"><i className="fa fa-trash-o" aria-hidden="true"></i>  Delete</span>

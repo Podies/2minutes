@@ -24,10 +24,6 @@ class Accountinfo extends Component {
       this.setState({ showDropDown: false });
     }
   }
-    
-  componentDidMount() {
-    // window.addEventListener("click", this.handleBodyClick, true);
-  }
 
 	render() {
 		return (
