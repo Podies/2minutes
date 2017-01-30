@@ -16,17 +16,12 @@ class Accountinfo extends Component {
   }
 
   handleBodyClick(e) {
-    console.log(e.target);
     const userDropdown = document.getElementById('user-dropdown');
     if(!userDropdown) {
       return;
     } else if (!userDropdown.contains(e.target)) {
       this.setState({ showDropDown: false });
     }
-  }
-    
-  componentDidMount() {
-    // window.addEventListener("click", this.handleBodyClick, true);
   }
 
 	render() {

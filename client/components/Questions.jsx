@@ -35,16 +35,16 @@ class Questions extends Component {
 				  <div className="col-xs-12">
 					  <div className="all-questions">
 					    <div className="question-sec">
-					       <ReviewQuestions />
-					      {/*<QuestionInput 
+					       {/*<ReviewQuestions />*/}
+					      <QuestionInput 
 					      	activeUser={this.props.activeUser}
 					      	dispatch={this.props.dispatch}
-					      />*/}
+					      />
 					    </div>
-              <SavedQuestionsReviewSession/>
-					    {/*<SavedQuestions
+              {/*<SavedQuestionsReviewSession/>*/}
+					    <SavedQuestions
 					    	questions={this.props.userQuestions.questions}
-					    />*/}
+					    />
 					  </div>
 				  </div>
 				</div>
