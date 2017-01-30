@@ -3,6 +3,7 @@ var router = express.Router();
 var Question = require('../models/question');
 var QuestionSet = require('../models/questionSet');
 var User = require('../models/user');
+var Result = require('../models/result');
 
 router.get('/', function(req, res) {
   res.json({api:"Api here"});
@@ -106,8 +107,8 @@ router.post('/answer/:questionId', function(req, res) {
 });
 
 router.get('/result/daily/:userId', function(req, res) {
-  // var date = req.body.date;
-  // var specificDate = new Date(date).toISOString();
+  // var date = req.params.date;
+  // var specificDate = new Date(date).toISOString().slice(0, 10);
   var userId = req.params.userId;
   User.findOne({_id: userId}).exec(function(err, user) {
     if(err) { throw err; }
@@ -118,14 +119,86 @@ router.get('/result/daily/:userId', function(req, res) {
       if(err) { throw err; }
       var total = questionSet.questions.length;
       var currentDate = (new Date()).toISOString().slice(0,10);
-      console.log(currentDate);
 
       Question.find({ _id: { $in: questionSet.questions }}).exec(function(err, questions){
         var correct = 0;
         questions.forEach(function(single, i){
           single.answers.forEach(function(answer){
             // console.log("called", answer.date.toISOString(), new Date(currentDate).toISOString())
-            if(answer.date.toISOString() == new Date(currentDate).toISOString()){
+            if(answer.date.toISOString() === new Date(currentDate).toISOString()){
+              // console.log(answer.date);
+              if(single.userPreference.type == "boolean") {
+                if(single.userPreference.value == answer.answer) {
+                  correct++;
+                }
+              } else {
+                if(answer.answer >= single.userPreference.value) {
+                  correct++;
+                }
+              }
+            } 
+          });
+        });
+        var percentage = (correct * 100)/total;
+        console.log(correct, total, "Correct Score is", percentage+ "%");
+        Result.findOne({userId: user._id}).exec(function(err, result) {
+          // console.log(result);
+          if(err) { throw err; }
+          if(!result) {
+            var newResult = new Result();
+            newResult.userId = user._id;
+            newResult.daily.push({
+                date: new Date(currentDate),
+                percentage : percentage
+              });
+            newResult.save(function(err, savedResult) {
+              if(err) { throw err; }
+              // console.log("Result and user saved", savedResult);
+            });
+          } else {
+            if(result.daily[0]){
+              // console.log("DAte called", result.daily[0].date.toISOString(), new Date(currentDate).toISOString())
+              if(result.daily[0].date.toISOString() === new Date(currentDate).toISOString()){
+                result.daily[0].date = new Date(currentDate);
+                result.daily[0].percentage = percentage;
+                //  console.log("Overwitten");
+              } else {
+                result.daily.unshift({
+                  date: new Date(currentDate),
+                  percentage : percentage
+                });
+              }
+              result.save(function(err, savedResult) {
+                if(err) { throw err; }
+                console.log("Result saved", savedResult);
+              })
+            }
+          }
+        });
+       res.json({"Correct Score in Percentage: ": percentage});
+      });
+    });
+  });
+});
+
+router.get('/result/weekly/questionwise/:userId/:fromDate/:toDate', function(req, res) {
+  var userId = req.params.userId;
+  var toDate = new Date(req.params.toDate);
+  var fromDate  = new Date(req.params.fromDate);
+  // console.log("Called date", toDate, fromDate); 
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, questionSet) {
+      if(err) { throw err; }
+      const resultPerQuestion = [];
+      const finalResult = {correct : 0, total : 0 };
+      Question.find({_id: {$in :questionSet.questions}}).exec(function(err, questions) {
+        if(err) { throw err; }
+        questions.forEach(function(single, i) {
+          var total = single.answers.length;
+          var correct = 0;
+          single.answers.forEach(function(answer, i) {
+            if(answer.date.toISOString() >= new Date(fromDate).toISOString() && answer.date.toISOString() <= new Date(toDate).toISOString()){
               if(single.userPreference.type == "boolean") {
                 if(single.userPreference.value == answer.answer) {
                   correct++;
@@ -135,14 +208,18 @@ router.get('/result/daily/:userId', function(req, res) {
                   correct++;
                 }
                }
-            } else {
-              // return res.status(400).send({message:"No Question Answered on this date"});
             }
-          })
+          });
+          var percentage = (correct * 100)/total;
+          resultPerQuestion.push({ _id: single._id, name: single.name, correct: correct, total: total, percentage: percentage});
         });
-         var percentage = (correct * 100)/total;
-         console.log(correct, total, "Correct Score is", percentage+ "%");
-         res.json({"Correct Score in Percentage: ": percentage});
+        // console.log(resultPerQuestion);
+        resultPerQuestion.forEach(function(rpq) {
+          finalResult.total += rpq.total;
+          finalResult.correct += rpq.correct;
+        });
+        finalResult.percentage = (finalResult.correct * 100)/finalResult.total;
+        res.json({ result: resultPerQuestion,finalResult: finalResult });
       });
     });
   });
