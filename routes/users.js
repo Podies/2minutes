@@ -136,6 +136,41 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+// Change Password Route
+router.post('/changepassword', function(req, res, next) {
+  var password = req.body.password;
+  var newPassword = req.body.newPassword;
+  var confirmPassword = req.body.confirmPassword;
+  var userId = req.user._id;
+  console.log(password, newPassword, confirmPassword, 'in users js');
+  if(!password || !newPassword || !confirmPassword) {
+    return res.status(400).send({message: "All Fields are Must!!"});
+  }
+
+  if(newPassword !== confirmPassword) {
+    return res.status(400).send({message: "Passwords do not Match"});
+  }
+
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    if(!user) {
+      return res.status(400).send({message: "No Users Found"});
+    }
+    user.comparePassword(password, function(err, isMatch) {
+      if(err) { throw err; }
+      if(!isMatch) {
+        return res.status(400).send({message: "Incorrect Password"});
+      }
+      user.password = newPassword;
+      user.save(function(err, changedPassword) {
+        if(err) { throw err; }
+        res.json({user: changedPassword});
+      })
+    });
+
+  });
+});
+
 // Saving Questions to Database.
 router.post('/question', function(req, res) {
   var name = req.body.name;
