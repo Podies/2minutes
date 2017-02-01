@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const fetchUserQuestionSet = (userId) => {
   const data = axios.get(`/api/questionset/${userId}`);
   return data;
@@ -14,6 +13,10 @@ const changePassword = (data) => {
   return axios.post(`/users/changepassword`, data);
 };
 
+const addAnswer = (questionId, answer) => {
+  return axios.post(`/answer/${questionId}`, answer);
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer
 };
