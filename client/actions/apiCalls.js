@@ -14,9 +14,9 @@ const changePassword = (data) => {
 };
 
 const addAnswer = (questionId, answer) => {
-  return axios.post(`/answer/${questionId}`, answer);
+  return axios.post(`/api/answer/${questionId}`, { answer });
 };
 
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer,
 };

@@ -40,6 +40,20 @@ const changePassword = (data) => {
   };
 };
 
+const addAnswer = (questionId, answer) => {
+  return (dispatch) => {
+    return apiCalls.addAnswer(questionId, answer)
+    .then(
+      (res) => {
+        return true;
+      },
+      (err) => {
+        return err.response;
+      },
+    );
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer,
 };
