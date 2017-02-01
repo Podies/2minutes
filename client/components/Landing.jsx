@@ -28,7 +28,7 @@ const Landing = () => {
 		            </div>
 			        </div>
 			        <div className="col-xs-6 intro-video">
-	              <div className="col">
+			          <div className="col">
 	                <iframe width="560" height="315" src="https://www.youtube.com/embed/-MxxzK0oZY8" frameBorder="0" allowFullScreen>
 	                </iframe>
 	              </div>

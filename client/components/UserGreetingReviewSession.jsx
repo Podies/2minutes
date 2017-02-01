@@ -13,8 +13,7 @@ const UserGreetingReviewSession = (props) => {
         <div className="col-xs-3" onClick={props.showAddQuestion}>
           <div className="col">
             <span className="add-question">
-              <i className="fa fa-plus" aria-hidden="true" />
-              Add Question
+              <a><i className="fa fa-plus" aria-hidden="true" /> Add Question</a>
             </span>
           </div>
         </div>
