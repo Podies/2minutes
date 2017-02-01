@@ -137,29 +137,29 @@ router.get('/logout', function(req, res){
 });
 
 // Change Password Route
-router.post('/changepassword/:userId', function(req, res, next) {
+router.post('/changepassword', function(req, res, next) {
   var password = req.body.password;
   var newPassword = req.body.newPassword;
   var confirmPassword = req.body.confirmPassword;
-  var userId = req.params.userId;
-
+  var userId = req.user._id;
+  console.log(password, newPassword, confirmPassword, 'in users js');
   if(!password || !newPassword || !confirmPassword) {
-    return res.status(400).send({error: "All Fields are Must!!"});
+    return res.status(400).send({message: "All Fields are Must!!"});
   }
 
   if(newPassword !== confirmPassword) {
-    return res.status(400).send({error: "Passwords do not Match"});
+    return res.status(400).send({message: "Passwords do not Match"});
   }
 
   User.findOne({_id: userId}).exec(function(err, user) {
     if(err) { throw err; }
     if(!user) {
-      return res.status(400).send({Message: "No Users Found"});
+      return res.status(400).send({message: "No Users Found"});
     }
     user.comparePassword(password, function(err, isMatch) {
       if(err) { throw err; }
       if(!isMatch) {
-        return res.status(400).send({Message: "Incorrect Password"});
+        return res.status(400).send({message: "Incorrect Password"});
       }
       user.password = newPassword;
       user.save(function(err, changedPassword) {
