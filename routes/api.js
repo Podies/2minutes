@@ -225,5 +225,48 @@ router.get('/result/weekly/questionwise/:userId/:fromDate/:toDate', function(req
   });
 });
 
+router.get('/result/lastweek/:userId', function(req, res) {
+  var userId = req.params.userId;
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    QuestionSet.findOne({_id: user.questionSetId}).exec(function(err, questionSet) {
+      if(err) { throw err; }
+      const resultPerQuestion = [];
+      const finalResult = {correct : 0, total : 0 };
+      Question.find({_id: {$in :questionSet.questions}}).exec(function(err, questions) {
+        if(err) { throw err; }
+        var currentDate = new Date().toISOString();
+        questions.forEach(function(single, i) {
+          var total = single.answers.length;
+          var correct = 0;
+          single.answers.forEach(function(answer, i) {
+            console.log(new Date(new Date().setDate(new Date().getDate()-7)).toISOString());
+            if(answer.date.toISOString() >= new Date(new Date().setDate(new Date().getDate()-7)).toISOString()) {
+              if(single.userPreference.type == "boolean") {
+                if(single.userPreference.value == answer.answer) {
+                  correct++;
+                }
+               } else {
+                if(answer.answer >= single.userPreference.value) {
+                  correct++;
+                }
+               }
+            }
+          });
+          var percentage = (correct * 100)/total;
+          resultPerQuestion.push({ _id: single._id, name: single.name, correct: correct, total: total, percentage: percentage});
+        });
+        // console.log(resultPerQuestion);
+        resultPerQuestion.forEach(function(rpq) {
+          finalResult.total += rpq.total;
+          finalResult.correct += rpq.correct;
+        });
+        finalResult.percentage = (finalResult.correct * 100)/finalResult.total;
+        res.json({ result: resultPerQuestion,finalResult: finalResult });
+      });
+    });
+  });
+})
+
 
 module.exports = router;
