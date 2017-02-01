@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import QuestionInput from './QuestionInput';
 import NewUserQuestion from './NewUserQuestion';
 import * as api from '../actions/apiCalls';
 import SavedQuestions from './SavedQuestions';
-import { connect } from 'react-redux';
 import * as actionCreator from '../actions/index';
-import ReviewQuestions from './ReviewQuestions';
-import UserGreetingReviewSession from './UserGreetingReviewSession';
-import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
 class Questions extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-      addQuestion: false,
-    };
   }
 
   componentWillMount() {
@@ -25,31 +19,32 @@ class Questions extends Component {
     }
   }
 
-	render () {
-	 return(
-    <div>
-      <div className="row">
-        <div className="col-xs-12">
-          <NewUserQuestion />
+  render() {
+    return (
+      <div>
+        <div className="row">
+          <div className="col-xs-12">
+            <NewUserQuestion />
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-xs-12">
-          <div className="all-questions">
-            <div className="question-sec">
-              <QuestionInput 
-              activeUser={this.props.activeUser}
-              dispatch={this.props.dispatch}
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="all-questions">
+              <div className="question-sec">
+                <QuestionInput
+                  activeUser={this.props.activeUser}
+                  dispatch={this.props.dispatch}
+                />
+              </div>
+              <SavedQuestions
+                questions={this.props.userQuestions.questions}
               />
             </div>
-            <SavedQuestions
-            questions={this.props.userQuestions.questions}
-            />
           </div>
         </div>
       </div>
-    </div>
-  )}
+    );
+  }
 }
 
 Questions.contextTypes = {
@@ -57,11 +52,13 @@ Questions.contextTypes = {
 };
 
 Questions.propTypes = {
-  activeUser: React.PropTypes.object.isRequired,
+  activeUser: React.PropTypes.shape,
+  dispatch: React.PropTypes.func.isRequired,
+  userQuestions: React.PropTypes.mixed,
 };
 
 function mapStateToProps(store) {
-	return store;
+  return store;
 }
 
 export default connect(mapStateToProps)(Questions);
