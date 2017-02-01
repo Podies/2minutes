@@ -23,7 +23,11 @@ class SavedQuestionsReviewSession extends Component {
             this.props.questions.map((question, i) => {
               return (
                 this.state.expandedViewId == i ?
-                  <ExpandedView key={i} question={question} />           
+                  <ExpandedView
+                    key={i}
+                    question={question}
+                    dispatch={this.props.dispatch}
+                  />       
                 :
                   <ListView key={i} index={i} question={question} handleView={this.handleView} />
               );
