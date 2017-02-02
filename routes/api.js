@@ -22,8 +22,8 @@ router.get('/questionset/:userId', function(req, res) {
 router.post('/answer/:questionId', function(req, res) {
   var questionId = req.params.questionId;
   var solution = req.body.answer;
-  var date = req.body.date;
-  var newdate = new Date(date).toISOString();
+  // var date = req.body.date;
+  // var newdate = new Date(date).toISOString();
 
   Question.findOne({_id: questionId}).exec(function(err, question) {
     if(err) {
@@ -47,24 +47,7 @@ router.post('/answer/:questionId', function(req, res) {
       //check if question.answers exist.
       if(question.answers[0]){
       //console.log("called", date, newdate);
-      //   // check for today's date.
-      //   //  - yes, override that
-      //   question.answers.forEach(function(answer) {
-      //     // console.log(answer.date, new Date(currentDate).toISOString(), typeof answer.date, typeof new Date(currentDate) ,'called');
-      //     if(answer.date.toString() == new Date(newdate).toString()){
-      //       answer.answer = solution;
-      //       console.log("OverWitten answer", solution);
-          
-
-      //       question.save(function(err, savedAnswer) {
-      //         if(err) {
-      //          throw err;
-      //         }
-      //          console.log("OverWitten answer", savedAnswer);
-      //         res.json({question: savedAnswer});
-      //       });
-      //     } 
-      //   });
+      
         if(question.answers[0].date.toString() == new Date(currentDate).toString()) {
           question.answers[0].answer = solution;
           console.log("OverWitten answer", solution);
@@ -240,7 +223,7 @@ router.get('/result/lastweek/:userId', function(req, res) {
           var total = single.answers.length;
           var correct = 0;
           single.answers.forEach(function(answer, i) {
-            console.log(new Date(new Date().setDate(new Date().getDate()-7)).toISOString());
+            // console.log(new Date(new Date().setDate(new Date().getDate()-7)).toISOString());
             if(answer.date.toISOString() >= new Date(new Date().setDate(new Date().getDate()-7)).toISOString()) {
               if(single.userPreference.type == "boolean") {
                 if(single.userPreference.value == answer.answer) {

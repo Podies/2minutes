@@ -9,6 +9,7 @@ var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCD
 var elastic = require('elastic-email-api');
 var token = randomToken(32);
 var axios = require('axios');
+var uploader = require('../modules/upload');
 
 //Elastic Wrapper Recommended.
 // elastic.Account.Load({apikey: 'f6139ea0-5df6-4bdf-ac0d-4d369af95b06'}, function (responseObj) {
@@ -282,6 +283,7 @@ router.post('/question', function(req, res) {
   });
 });
 
+// Delete Question route
 router.post('/question/delete/:questionId', function(req, res) {
   var questionId = req.params.questionId;
   var userId = req.body.userId;
@@ -300,6 +302,25 @@ router.post('/question/delete/:questionId', function(req, res) {
         }
       }); 
     });
+  });
+});
+
+//Upload Image route
+router.post('/upload', function(req, res) {
+  var image = req.files.image;
+  var userId = req.user._id;
+
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    if(!user.facebook.id && !user.google.id) {
+      uploader.uploadImage(image, function(url){
+        user.photo = url;
+        user.save(function(err, savedImage) {
+          if(err) { throw err; }
+          res.json({user: savedImage});
+        });
+      });
+    }
   });
 });
 
