@@ -3,6 +3,7 @@ import Header from './Header';
 import Calendar from './Calendar';
 import Questions from './Questions';
 import Footer from './Footer';
+import ReviewHistory from './ReviewHistory';
 
 
 const Dashboard = () => {
@@ -13,7 +14,6 @@ const Dashboard = () => {
 	  	  <div className="row">
 	    	  <div className="col-xs-12 dashboard-wrapper">
 		    	 <Questions />
-	         {/*<Calendar />*/}
 	    	  </div>
 	  	  </div>
 	  	</div>
