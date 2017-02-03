@@ -8,7 +8,7 @@ const Signupbutton = (props) => {
 			</div>
 			<div className="col-xs-3">
 	     <div className="col get-started-btn">
-	      <a href="#" className="get-started" onClick={props.showLoginModal}>Sign Up</a>
+	      <a href="#" className="get-started" id="signupbtn" onClick={props.showLoginModal}>Log In/Sign Up</a>
 	     </div>
 	    </div>
     </div>

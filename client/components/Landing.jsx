@@ -15,7 +15,7 @@ const Landing = () => {
 	              <div className="col-xs-12">
 		              <div className="col">
 		                <div className="hero-illustration-sec">
-		                  <img src="../images/maxresdefault.png" className="hero-illustration"/>
+		                  <img src="../images/2-Minutes-Illustration-hero.png" className="hero-illustration"/>
 		                </div>
 		              </div>
 	              </div>
@@ -28,7 +28,7 @@ const Landing = () => {
 		            </div>
 			        </div>
 			        <div className="col-xs-6 intro-video">
-	              <div className="col">
+			          <div className="col">
 	                <iframe width="560" height="315" src="https://www.youtube.com/embed/-MxxzK0oZY8" frameBorder="0" allowFullScreen>
 	                </iframe>
 	              </div>
@@ -50,7 +50,7 @@ const Landing = () => {
 		        </div>
 		        <div className="illustration-1-sec col-xs-6">
 		          <div className="col">
-		            <img src="../images/maxresdefault.png" className="illustration-1"/>
+		            <img src="../images/2-Minutes-Illustration-001.png" className="illustration-1"/>
 		          </div>
 		        </div>
 		      </div>
@@ -59,7 +59,7 @@ const Landing = () => {
 		      <div className="col-xs-12 walkthrough-sec-2">
 		        <div className="illustration-2-sec col-xs-6">
 		          <div className="col">
-		            <img src="../images/maxresdefault.png" className="illustration-2"/>
+		            <img src="../images/2-Minutes-Illustration-002.png" className="illustration-2"/>
 		          </div>
 		        </div>
 		        <div className="product-learning-2 col-xs-6">
@@ -83,7 +83,7 @@ const Landing = () => {
 		        </div>
 		        <div className="illustration-3-sec col-xs-6">
 		          <div className="col">
-		            <img src="../images/maxresdefault.png" className="illustration-3"/>
+		            <img src="../images/2-Minutes-Illustration-003.png" className="illustration-3"/>
 		          </div>
 		        </div>
 		      </div>

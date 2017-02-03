@@ -14,14 +14,14 @@ const ForgotPassword = (props) => {
       props.handleForgotPasswordError('Invalid email.');
     }
 
-    props.handleForgotPassword({ email: email.value });
+    // {/*props.handleForgotPassword({ email: email.value });*/}
   }
 	return(
-      <div>
+      <div className="forgot-password-sec">
         <div>{props.forgotPasswordError}</div>
         <h1>Forgot Password?</h1>
         <p>Don't worry just enter your registered email Id below!</p>
-        <input ref={(c) => { email = c; }} type="email"/>
+        <input ref={(c) => { email = c; }} type="email" placeholder="Enter Registered Email Id"/>
         <p>We will send a password reset link.</p>
         <input type="submit" value="Send Me Reset Link" onClick={handleForgotPassword} />
       </div>
