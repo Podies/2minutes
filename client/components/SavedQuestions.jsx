@@ -3,10 +3,10 @@ import React from 'react';
 const SavedQuestions = (props) => {
   const handleUserPreference = (userPreferencevalue) => {
     switch (userPreferencevalue) {
-      case "true":
-        return "Yes";
-      case "false":
-        return "No";
+      case 'true':
+        return 'Yes';
+      case 'false':
+        return 'No';
       default:
         return userPreferencevalue;
     }

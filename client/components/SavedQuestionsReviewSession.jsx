@@ -1,48 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ExpandedView from './ExpandedView';
+import ListView from './ListView';
 
+class SavedQuestionsReviewSession extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      expandedViewId: '0',
+    };
+    this.handleView = this.handleView.bind(this);
+  }
+  handleView(index) {
+    this.setState({
+      expandedViewId: index,
+    });
+  }
+  render() {
+    return (
+      <div className="row">
+        {
+          this.props.questions.length > 0 ?
+            this.props.questions.map((question, i) => {
+              return (
+                this.state.expandedViewId == i ?
+                  <ExpandedView
+                    key={i}
+                    question={question}
+                    dispatch={this.props.dispatch}
+                  />       
+                :
+                  <ListView key={i} index={i} question={question} handleView={this.handleView} />
+              );
+            })
+          :
+            null
+        }
+      </div>
+    );
+  }
+};
 
-
-const SavedQuestionsReviewSession = () => {
-	return (
-     <div className="row">
-	     <div className="col-xs-12">
-	       <div className="col-xs-1"></div>
-	       <div className="col-xs-10 saved-question">
-	         <div className="col">
-	           <h1 className="question-heading">I will answer this question after answering how many questions?</h1>
-	         </div>
-	       </div>
-	       <div className="col-xs-1"></div>
-	     </div>
-	     <div className="col-xs-12">
-	       <div className="col-xs-1"></div>
-	       <div className="col-xs-10 saved-question">
-	         <div className="col">
-	           <h1 className="question-heading">I will answer this question after answering how many questions?</h1>
-	         </div>
-	       </div>
-	       <div className="col-xs-1"></div>
-	     </div>
-	     <div className="col-xs-12">
-	       <div className="col-xs-1"></div>
-	       <div className="col-xs-10 saved-question">
-	         <div className="col">
-	           <h1 className="question-heading">I will answer this question after answering how many questions?</h1>
-	         </div>
-	       </div>
-	       <div className="col-xs-1"></div>
-	     </div>
-	     <div className="col-xs-12">
-	       <div className="col-xs-1"></div>
-	       <div className="col-xs-10 saved-question">
-	         <div className="col">
-	           <h1 className="question-heading">I will answer this question after answering how many questions?</h1>
-	         </div>
-	       </div>
-	       <div className="col-xs-1"></div>
-	     </div>
-     </div>
-		)
-}
 
 export default SavedQuestionsReviewSession;
