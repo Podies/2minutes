@@ -70,7 +70,7 @@ router.post('/answer/:questionId', function(req, res) {
         } else {
           question.answers.unshift({
           // for trial, we put newdate otherwide currentDate always
-          date: new Date(newdate),
+          date: new Date(currentDate),
           answer: solution
           });
           console.log("New answer saved", solution);

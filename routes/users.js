@@ -132,8 +132,15 @@ router.post('/login',function(req, res, next){
 
 //Logout
 router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+  console.log(req.user, 'loggedin 1 ?');
+  req.session.destroy(function(err) {
+    console.log(err, 'error');
+    // cannot access session here
+    req.logout();
+    console.log(req.user, 'after login')
+    res.cookie('connect.sid', '', { expires: new Date() });
+    res.redirect('/');
+  });
 });
 
 // Change Password Route

@@ -45,6 +45,8 @@ const addAnswer = (questionId, answer) => {
     return apiCalls.addAnswer(questionId, answer)
     .then(
       (res) => {
+        console.log(res.data)
+        dispatch(actions.addAnswer(res.data));
         return true;
       },
       (err) => {
@@ -54,6 +56,13 @@ const addAnswer = (questionId, answer) => {
   };
 };
 
+const logoutUser = () => {
+  return (dispatch) => {
+    dispatch(actions.logoutUser());
+    return apiCalls.logout();
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logoutUser
 };
