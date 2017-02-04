@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import * as api from '../actions/apiCalls';
-import QuestionInput from './QuestionInput';
 import { connect } from 'react-redux';
+import QuestionInput from './QuestionInput';
 import * as actionCreator from '../actions/index';
-import ExpandedView from './ExpandedView';
 import UserGreetingReviewSession from './UserGreetingReviewSession';
 import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
@@ -14,6 +12,7 @@ class Review extends Component {
       showAddQuestion: false,
     };
     this.showAddQuestion = this.showAddQuestion.bind(this);
+    this.closeAddQuestion = this.closeAddQuestion.bind(this);
   }
 
   componentWillMount() {
@@ -24,9 +23,12 @@ class Review extends Component {
     }
   }
 
-  showAddQuestion(e) {
-    e.preventDefault();
-    this.setState({ showAddQuestion: !this.state.showAddQuestion });
+  showAddQuestion() {
+    this.setState({ showAddQuestion: true });
+  }
+
+  closeAddQuestion() {
+    this.setState({ showAddQuestion: false });
   }
 
   render() {
@@ -46,6 +48,8 @@ class Review extends Component {
                     <QuestionInput
                       activeUser={this.props.activeUser}
                       dispatch={this.props.dispatch}
+                      showCrossButton={true}
+                      closeAddQuestion={this.closeAddQuestion}
                     />
                   :
                     null
@@ -55,6 +59,7 @@ class Review extends Component {
                 questions={this.props.userQuestions.questions}
                 showAddQuestion={this.state.showAddQuestion}
                 dispatch={this.props.dispatch}
+                closeAddQuestion={this.closeAddQuestion}
               />
             </div>
           </div>

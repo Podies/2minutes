@@ -10,7 +10,7 @@ const SavedQuestions = (props) => {
       default:
         return userPreferencevalue;
     }
-  }
+  };
   return (
     <div>
     {
@@ -38,7 +38,7 @@ const SavedQuestions = (props) => {
               <div className="col-xs-1">
               </div>
             </div>
-          )     
+          )
         })
       :
       null

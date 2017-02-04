@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 
 const NewUserQues = () => {
@@ -15,7 +16,7 @@ const NewUserQues = () => {
             <div className="col-xs-10"></div>
             <div className="col-xs-2">
               <div className="col to-review">
-                <a href="#" className="next-button"><i className="fa fa-arrow-right" aria-hidden="true"></i> All Set</a>
+                <Link href="/review" className="next-button"><i className="fa fa-arrow-right" aria-hidden="true"></i> All Set</Link>
               </div>
             </div>
           </div>

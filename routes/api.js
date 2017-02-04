@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/questionset/:userId', function(req, res) {
-  QuestionSet.findOne({userId: req.params.userId}).populate('questions', 'name userPreference dateAdded', null, {sort: { 'dateAdded': -1 }}).exec(function(err, set) {
+  QuestionSet.findOne({userId: req.params.userId}).populate('questions', 'name userPreference dateAdded answers', null, {sort: { 'dateAdded': -1 }}).exec(function(err, set) {
     if(err) {
       throw err;
     } else {
@@ -21,8 +21,8 @@ router.get('/questionset/:userId', function(req, res) {
 router.post('/answer/:questionId', function(req, res) {
   var questionId = req.params.questionId;
   var solution = req.body.answer;
-  var date = req.body.date;
-  var newdate = new Date(date).toISOString();
+  // var date = req.body.date;
+  // var newdate = new Date(date).toISOString();
 
   Question.findOne({_id: questionId}).exec(function(err, question) {
     if(err) {
@@ -70,7 +70,7 @@ router.post('/answer/:questionId', function(req, res) {
         } else {
           question.answers.unshift({
           // for trial, we put newdate otherwide currentDate always
-          date: new Date(newdate),
+          date: new Date(currentDate),
           answer: solution
           });
           console.log("New answer saved", solution);

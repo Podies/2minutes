@@ -932,7 +932,7 @@ header {
 .question-action-sec {
 	position: absolute;
 	right: 1.2em;
-	bottom: 1.8em;
+	bottom: 1em;
 	
   span {
   	padding: 0.6em 1em;
@@ -977,6 +977,10 @@ header {
 		font-size: 0.9em;
 	  }
 	}
+}
+
+.answered {
+  text-decoration: line-through;
 }
 
 
@@ -1043,8 +1047,13 @@ header {
 }
 
 .yes-no-toggle-sec input:checked + label {
-	background-color: $color-6;
-	box-shadow: none;
+  background-color: $color-6;
+  box-shadow: none;
+}
+
+.yes-no-toggle-sec input.active + label {
+  background-color: $color-6;
+  box-shadow: none;
 }
 
 .saved-question {

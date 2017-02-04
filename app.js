@@ -72,6 +72,7 @@ app.use('/api', api);
 
 app.use('*', function(req, res) {
   var initialState = { activeUser: null };
+  console.log('req.user', req.user)
   if(req.user) {
     User.findById(req.user._id).select('-password').exec(function(err, user){
       initialState.activeUser = user;

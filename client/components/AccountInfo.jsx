@@ -36,7 +36,7 @@ class Accountinfo extends Component {
 		        <img src={this.props.photo} />
 		       </div>
 		       {
-		       	this.state.showDropDown ? <UserDropDown toggleDropDown={this.toggleDropDown} /> : null
+		       	this.state.showDropDown ? <UserDropDown dispatch={this.props.dispatch} toggleDropDown={this.toggleDropDown} /> : null
 		       }
 		      </div>
 		    </div>

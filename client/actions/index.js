@@ -40,6 +40,29 @@ const changePassword = (data) => {
   };
 };
 
+const addAnswer = (questionId, answer) => {
+  return (dispatch) => {
+    return apiCalls.addAnswer(questionId, answer)
+    .then(
+      (res) => {
+        console.log(res.data)
+        dispatch(actions.addAnswer(res.data));
+        return true;
+      },
+      (err) => {
+        return err.response;
+      },
+    );
+  };
+};
+
+const logoutUser = () => {
+  return (dispatch) => {
+    dispatch(actions.logoutUser());
+    return apiCalls.logout();
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logoutUser
 };
