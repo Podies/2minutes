@@ -6,12 +6,6 @@ const resultSchema = Schema({
   daily:[{
     date:{type: Date},
     percentage: String
-  }],
-  weekly:[{
-
-  }],
-  monthly: [{
-
   }]
 });
 
