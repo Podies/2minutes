@@ -9,6 +9,7 @@ var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCD
 var elastic = require('elastic-email-api');
 var token = randomToken(32);
 var axios = require('axios');
+var uploader = require('../modules/upload');
 
 //Elastic Wrapper Recommended.
 // elastic.Account.Load({apikey: 'f6139ea0-5df6-4bdf-ac0d-4d369af95b06'}, function (responseObj) {
@@ -178,6 +179,38 @@ router.post('/changepassword', function(req, res, next) {
   });
 });
 
+// Update Password route
+router.post('/updatepassword/:userId', function(req, res, next) {
+  var userId = req.params.userId;
+  var password = req.body.password;
+  var confirmPassword = req.body.confirmPassword;
+
+  if(!password || !confirmPassword) {
+    return res.status(400).send({message: "All Fields are must"});
+  }
+
+  if(password !== confirmPassword) {
+    return res.status(400).send({message: "Passwords do not Match"});
+  }
+
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    if(!user) {
+      return res.status(400).send({message: "No Users Found"});
+    }
+    if(!user.facebook && !user.google) {
+      return res.status(400).send({message: "Please Go to Change Password or Forgot password to create a new password"});
+    } else {
+      user.password = password;
+      user.save(function(err, saved) {
+        if(err) { throw err; }
+        console.log("User password saved");
+      })
+    }
+
+  });
+}); 
+
 // Saving Questions to Database.
 router.post('/question', function(req, res) {
   var name = req.body.name;
@@ -253,6 +286,47 @@ router.post('/question', function(req, res) {
         }
 
       })
+    }
+  });
+});
+
+// Delete Question route
+router.post('/question/delete/:questionId', function(req, res) {
+  var questionId = req.params.questionId;
+  var userId = req.body.userId;
+
+  Question.findByIdAndRemove({_id: questionId}).exec(function(err, deleted) {
+    if(err) { throw err; }
+    QuestionSet.findOne({userId: userId}).exec(function(err, set) {
+      if(err) { throw err; }
+      set.questions.forEach(function(question, i) {
+        if(question == questionId) {
+          set.questions.splice(i, 1);
+          set.save(function(err, deletedQuestionFromSet) {
+            if(err) { throw err; }
+            res.json({questionSet: deletedQuestionFromSet});
+          });
+        }
+      }); 
+    });
+  });
+});
+
+//Upload Image route
+router.post('/upload', function(req, res) {
+  var image = req.files.image;
+  var userId = req.user._id;
+
+  User.findOne({_id: userId}).exec(function(err, user) {
+    if(err) { throw err; }
+    if(!user.facebook.id && !user.google.id) {
+      uploader.uploadImage(image, function(url){
+        user.photo = url;
+        user.save(function(err, savedImage) {
+          if(err) { throw err; }
+          res.json({user: savedImage});
+        });
+      });
     }
   });
 });

@@ -8,5 +8,10 @@ module.exports = {
     "clientId": "835331847386-d7o1s8ngnqtm1ttqbposvbrbaaijj6mn.apps.googleusercontent.com",
     "clientSecret": "dxBmtNZQz_Mrxppt3XJiWlvG",
     "callbackURL": "http://localhost:3030/auth/google/callback"
+  },
+  "cloudinary": {
+    "cloudName": "tigermuaythai",
+    "apiKey": "984142958741382",
+    "apiSecret": "Uqqc8_V3128ZOJa4yW4U7PRayP8"
   }
 }
