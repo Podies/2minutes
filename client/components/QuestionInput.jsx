@@ -14,7 +14,6 @@ class QuestionInput extends Component {
   }
 
   saveQuestion(e) {
-    console.log('called');
     e.preventDefault();
     if (!this.question.value || !this.state.expectedAnswer) {
       if (!this.question.value) {

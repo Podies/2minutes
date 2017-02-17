@@ -11,6 +11,13 @@ const SavedQuestions = (props) => {
         return userPreferencevalue;
     }
   };
+  const deleteQuestion = (id) => {
+    const deleteValue = confirm('Are you sure you wanted to delete this question?');
+    if (deleteValue)
+      return props.dispatch(actionCreators.deleteQuestion(id));
+    else
+      return null;
+  };
   return (
     <div>
     {
@@ -31,7 +38,7 @@ const SavedQuestions = (props) => {
                      </p>
                   </div>
                   <span className="question-action-sec">
-                     <span className="delete"><i className="fa fa-trash-o" aria-hidden="true"></i>  Delete</span>
+                    <span className="delete"><i className="fa fa-trash-o" aria-hidden="true" />  Delete</span>
                   </span>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import UserGreetingReviewSession from './UserGreetingReviewSession';
 import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
 class Review extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showAddQuestion: false,

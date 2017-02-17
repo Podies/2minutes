@@ -20,6 +20,10 @@ function userQuestions(state = defaultState, action) {
       });
       copy.questions[index].answers = action.data.question.answers;
       return copy;
+    case 'DELETE_QUESTION':
+      copy.questions = action.data.questionSet.questions;
+      copy.isLoading = false;
+      return copy;
     default:
       return state;
   }

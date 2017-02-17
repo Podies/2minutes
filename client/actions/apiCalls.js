@@ -21,6 +21,10 @@ const logout = () => {
   return axios.get('/users/logout');
 };
 
+const deleteQuestion = (questionId) => {
+  return axios.post(`/users/question/delete/${questionId}`);
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logout,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logout, deleteQuestion,
 };

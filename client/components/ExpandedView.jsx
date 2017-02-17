@@ -12,12 +12,24 @@ class ExpandedView extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
+
+  handleDelete(e) {
+    e.preventDefault();
+    const deleteQuestion = confirm('Are you sure you wanted to delete this question?');
+    if (deleteQuestion)
+      return this.props.dispatch(actionCreators.deleteQuestion(this.props.question._id));
+    else
+      return null;
+  }
+
   handleChange(e) {
     e.preventDefault();
     this.setState({ userAnswer: e.target.value });
     this.setState({ questionId: this.props.question._id });
   }
+
   handleSave(e) {
     e.preventDefault();
     this.state.userAnswer ? 
@@ -60,7 +72,7 @@ class ExpandedView extends Component {
                     }
                     <div className="question-action-sec-review">
                       <span className="save" onClick={this.handleSave}><i className="fa fa-check" aria-hidden="true" />  Save</span>
-                      <span className="delete"><i className="fa fa-trash-o" aria-hidden="true" />  Delete</span>
+                      <span className="delete" onClick={this.handleDelete}><i className="fa fa-trash-o" aria-hidden="true" />  Delete</span>
                     </div>
                   </div>
                   <div>{this.state.addAnswerError || this.state.addAnswerSuccess}</div>
