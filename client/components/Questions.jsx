@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionInput from './QuestionInput';
 import NewUserQuestion from './NewUserQuestion';
-import * as api from '../actions/apiCalls';
 import SavedQuestions from './SavedQuestions';
 import * as actionCreator from '../actions/index';
 
 class Questions extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     if (this.props.activeUser) {
@@ -38,6 +34,7 @@ class Questions extends Component {
               </div>
               <SavedQuestions
                 questions={this.props.userQuestions.questions}
+                dispatch={this.props.dispatch}
               />
             </div>
           </div>
@@ -52,9 +49,9 @@ Questions.contextTypes = {
 };
 
 Questions.propTypes = {
-  activeUser: React.PropTypes.shape,
+  activeUser: React.PropTypes.shape().isRequired,
   dispatch: React.PropTypes.func.isRequired,
-  userQuestions: React.PropTypes.mixed,
+  userQuestions: React.PropTypes.shape().isRequired,
 };
 
 function mapStateToProps(store) {

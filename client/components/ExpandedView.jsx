@@ -12,15 +12,27 @@ class ExpandedView extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
+
+  handleDelete(e) {
+    e.preventDefault();
+    const deleteQuestion = confirm('Are you sure you wanted to delete this question?');
+    if (deleteQuestion) {
+      return this.props.dispatch(actionCreators.deleteQuestion(this.props.question._id));
+    }
+    return null;
+  }
+
   handleChange(e) {
     e.preventDefault();
     this.setState({ userAnswer: e.target.value });
     this.setState({ questionId: this.props.question._id });
   }
+
   handleSave(e) {
     e.preventDefault();
-    this.state.userAnswer ? 
+    this.state.userAnswer ?
       this.props.dispatch(actionCreators.addAnswer(this.state.questionId, this.state.userAnswer))
         .then((res) => {
           if (res.status === 400) {
@@ -31,7 +43,7 @@ class ExpandedView extends Component {
           }
         })
       :
-        this.setState({ addAnswerError: 'Answer field should not be blank.' })
+      this.setState({ addAnswerError: 'Answer field should not be blank.' });
   }
   render() {
     return (
@@ -45,7 +57,7 @@ class ExpandedView extends Component {
                   <p>Your Answer</p>
                   <div className="all-input-sec">
                     {
-                      this.props.question.userPreference.type == 'boolean' ?
+                      this.props.question.userPreference.type === 'boolean' ?
                         <div className="yes-no-toggle-sec">
                           <input type="radio" name="userAnswer" value="true" id="switch_yes" onChange={this.handleChange} className={this.state.userAnswer === 'true' ? 'active' : ''} />
                           <label htmlFor="switch_yes">Yes</label>
@@ -60,7 +72,7 @@ class ExpandedView extends Component {
                     }
                     <div className="question-action-sec-review">
                       <span className="save" onClick={this.handleSave}><i className="fa fa-check" aria-hidden="true" />  Save</span>
-                      <span className="delete"><i className="fa fa-trash-o" aria-hidden="true" />  Delete</span>
+                      <span className="delete" onClick={this.handleDelete}><i className="fa fa-trash-o" aria-hidden="true" />  Delete</span>
                     </div>
                   </div>
                   <div>{this.state.addAnswerError || this.state.addAnswerSuccess}</div>
@@ -73,5 +85,11 @@ class ExpandedView extends Component {
     );
   }
 }
+
+ExpandedView.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  question: React.PropTypes.shape().isRequired,
+  answerAdded: React.PropTypes.func.isRequired,
+};
 
 export default ExpandedView;

@@ -26,12 +26,11 @@ const addUserQuestionSet = (data) => {
 };
 
 const logoutUser = () => {
-  console.log('called in logout')
   return {
     type: 'LOGOUT_USER',
     data: null
   };
-}
+};
 
 const addNewQuestion = (data) => {
   return {
@@ -47,6 +46,13 @@ const addAnswer = (data) => {
   };
 };
 
+const deleteQuestion = (data) => {
+  return {
+    type: 'DELETE_QUESTION',
+    data,
+  };
+};
+
 export {
-  showModal, hideModal, addActiveUser, addUserQuestionSet, addNewQuestion, addAnswer, logoutUser
+  showModal, hideModal, addActiveUser, addUserQuestionSet, addNewQuestion, addAnswer, logoutUser, deleteQuestion,
 };

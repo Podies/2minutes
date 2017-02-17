@@ -133,12 +133,9 @@ router.post('/login',function(req, res, next){
 
 //Logout
 router.get('/logout', function(req, res){
-  console.log(req.user, 'loggedin 1 ?');
   req.session.destroy(function(err) {
-    console.log(err, 'error');
     // cannot access session here
     req.logout();
-    console.log(req.user, 'after login')
     res.cookie('connect.sid', '', { expires: new Date() });
     res.redirect('/');
   });
@@ -293,7 +290,7 @@ router.post('/question', function(req, res) {
 // Delete Question route
 router.post('/question/delete/:questionId', function(req, res) {
   var questionId = req.params.questionId;
-  var userId = req.body.userId;
+  var userId = req.user._id;
 
   Question.findByIdAndRemove({_id: questionId}).exec(function(err, deleted) {
     if(err) { throw err; }
@@ -302,9 +299,12 @@ router.post('/question/delete/:questionId', function(req, res) {
       set.questions.forEach(function(question, i) {
         if(question == questionId) {
           set.questions.splice(i, 1);
-          set.save(function(err, deletedQuestionFromSet) {
+          set.save(function(err, savedSet) {
             if(err) { throw err; }
-            res.json({questionSet: deletedQuestionFromSet});
+            QuestionSet.findOne({_id: savedSet._id}).populate('questions').exec(function(err, data) {
+              if(err) { throw err;}
+              res.json({questionSet: data});
+            });
           });
         }
       }); 

@@ -45,7 +45,6 @@ const addAnswer = (questionId, answer) => {
     return apiCalls.addAnswer(questionId, answer)
     .then(
       (res) => {
-        console.log(res.data)
         dispatch(actions.addAnswer(res.data));
         return true;
       },
@@ -63,6 +62,21 @@ const logoutUser = () => {
   };
 };
 
+const deleteQuestion = (questionId) => {
+  return (dispatch) => {
+    return apiCalls.deleteQuestion(questionId)
+    .then(
+      (res) => {
+        dispatch(actions.deleteQuestion(res.data));
+        return true;
+      },
+      (err) => {
+        return false;
+      },
+    );
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logoutUser
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logoutUser, deleteQuestion
 };

@@ -52,5 +52,11 @@ class SavedQuestionsReviewSession extends Component {
   }
 }
 
+SavedQuestionsReviewSession.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  closeAddQuestion: React.PropTypes.func.isRequired,
+  questions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  showAddQuestion: React.PropTypes.bool.isRequired,
+};
 
 export default SavedQuestionsReviewSession;

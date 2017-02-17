@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
-import { connect } from 'react-redux';
 import * as actionCreators from '../actions/index';
 
 class UserProfile extends Component {
@@ -30,27 +30,30 @@ class UserProfile extends Component {
     const confirmNewPassword = this.confirmNewPassword.value;
 
     if (!currentPassword || !newPassword || !confirmNewPassword) {
-      this.setState({ changePasswordError: 'All fields are needed.'});
+      this.setState({ changePasswordError: 'All fields are needed.' });
     }
-    if (newPassword != confirmNewPassword) {
-      this.setState({ changePasswordError: 'Password do not match.'})
+    if (newPassword !== confirmNewPassword) {
+      this.setState({ changePasswordError: 'Password do not match.' });
     }
     if (newPassword.length < 8) {
-      this.setState({ changePasswordError: 'Pasword length should be atleast 8 characters.'})
+      this.setState({ changePasswordError: 'Pasword length should be atleast 8 characters.' });
     }
-    this.props.dispatch(actionCreators.
-      changePassword({ password: currentPassword, newPassword: newPassword, confirmPassword: confirmNewPassword}))
+    this.props.dispatch(actionCreators.changePassword({
+      password: currentPassword,
+      newPassword,
+      confirmPassword: confirmNewPassword,
+    }))
       .then((res) => {
-        if (res.status == 400) {
-          this.setState({changePasswordError: res.data.message});
+        if (res.status === 400) {
+          this.setState({ changePasswordError: res.data.message });
         } else {
-          this.setState({ changePasswordSuccess: 'Password Updated', showEditPassword: false});
+          this.setState({ changePasswordSuccess: 'Password Updated', showEditPassword: false });
         }
       });
   }
 
   render() {
-    return(
+    return (
       <div>
         <Header />
         <div className="extended-profile-section">
@@ -61,7 +64,7 @@ class UserProfile extends Component {
                 <div className="col-xs-4">
                   <div className="col img-sec">
                     <img src={this.props.activeUser.photo} alt={this.props.activeUser.name} />
-                    <span><i className="fa fa-camera" aria-hidden="true"></i></span>
+                    <span><i className="fa fa-camera" aria-hidden="true" /></span>
                   </div>
                 </div>
                 <div className="col-xs-8">
@@ -95,7 +98,7 @@ class UserProfile extends Component {
                           </tr>
                           <tr>
                             <td>Current Password: </td>
-                            <td><input type="password" ref={(c) => { this.currentPassword = c;}} /></td>
+                            <td><input type="password" ref={(c) => { this.currentPassword = c; }} /></td>
                           </tr>
                           <tr>
                             <td>New Password: </td>
@@ -113,7 +116,7 @@ class UserProfile extends Component {
                     <div className="col user-profile-save-btn">
                       <input type="submit" value="Save" onClick={this.changePassword} />
                     </div>
-                    <span onClick={this.showEditPassword}><i className="fa fa-pencil edit-profile" aria-hidden="true"></i></span>
+                    <span onClick={this.showEditPassword}><i className="fa fa-pencil edit-profile" aria-hidden="true" /></span>
                   </div>
                 </div>
               </div>
@@ -132,4 +135,10 @@ function mapStateToProps(store) {
     activeUser: store.activeUser,
   };
 }
+
+UserProfile.propTypes = {
+  activeUser: React.PropTypes.shape().isRequired,
+  dispatch: React.PropTypes.func.isRequired,
+
+};
 export default connect(mapStateToProps)(UserProfile);

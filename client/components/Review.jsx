@@ -6,7 +6,7 @@ import UserGreetingReviewSession from './UserGreetingReviewSession';
 import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
 class Review extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showAddQuestion: false,
@@ -71,6 +71,12 @@ class Review extends Component {
 
 Review.contextTypes = {
   router: React.PropTypes.object.isRequired,
+};
+
+Review.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  userQuestions: React.PropTypes.shape().isRequired,
+  activeUser: React.PropTypes.shape().isRequired,
 };
 
 function mapStateToProps(store) {

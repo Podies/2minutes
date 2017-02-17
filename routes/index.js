@@ -7,7 +7,7 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['public_prof
 
 router.get('/facebook/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/dashboard',
+    successRedirect: '/',
     failureRedirect: '/users/login' 
   }));
 
@@ -16,7 +16,7 @@ router.get('/google', passport.authenticate('google', { scope : ['profile', 'ema
 
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect : '/dashboard',
+    successRedirect : '/',
     failureRedirect : '/users/login'
   }));
 
