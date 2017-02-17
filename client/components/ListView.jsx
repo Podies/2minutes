@@ -3,25 +3,25 @@ import React from 'react';
 const ListView = (props) => {
 
   const changeDate = () => {
-    let today = new Date();
+    const today = new Date();
     let dd = today.getDate();
-    let mm = today.getMonth()+1; 
-    let yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
     if (dd < 10) {
-      dd = '0'+dd;
-    } 
-    if (mm < 10) {
-      mm='0'+mm;
+      dd = `0${dd}`;
     }
-    return yyyy+'-'+mm+'-'+dd+'T00:00:00.000Z'
+    if (mm < 10) {
+      mm = `0${mm}`;
+    }
+    return `${yyyy}-${mm}-${dd}T00:00:00.000Z`;
   };
 
   const checkIfAnswered = () => {
     const today = changeDate();
-    const index = props.question.answers.findIndex((answer, i) => {
-      return answer.date == today;
+    const index = props.question.answers.findIndex((answer) => {
+      return answer.date === today;
     });
-    return index != -1;
+    return index !== -1;
   };
 
   return (
@@ -35,6 +35,12 @@ const ListView = (props) => {
       <div className="col-xs-1" />
     </div>
   );
+};
+
+ListView.propTypes = {
+  handleView: React.PropTypes.func.isRequired,
+  index: React.PropTypes.number.isRequired,
+  question: React.PropTypes.shape().isRequired,
 };
 
 export default ListView;

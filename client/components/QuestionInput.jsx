@@ -45,12 +45,12 @@ class QuestionInput extends Component {
       <div className="row">
         <div className="col-xs-12">
           <div className="col">
-          {
-            this.props.showCrossButton ?
-              <div onClick={this.props.closeAddQuestion}>XX</div>
-              :
-              ''
-          }
+            {
+              this.props.showCrossButton ?
+                <div onClick={this.props.closeAddQuestion}>XX</div>
+                :
+                ''
+            }
             <input type="text" className="question" name="name" ref={(c) => { this.question = c; }} placeholder="Eg.Talk to family members every week." />
             <div className="expected-ans">
               <p>Your Expected Answer</p>

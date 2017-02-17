@@ -8,10 +8,10 @@ const Footer = () => {
           <div className="col-xs-12">
             <div className="col footer">
               <div className="feedback-sec">
-                <a href="mailto:team@podies.io" target="_blank" className="feedback">Give Us Feedback / Write Us</a>
+                <a href="mailto:team@podies.io" target="_blank" rel="noopener noreferrer" className="feedback">Give Us Feedback / Write Us</a>
               </div>
               <div className="copyright-sec">
-                <span>© 2017 <a href="http://podies.io/" target="_blank">Podies</a></span>
+                <span>© 2017 <a href="http://podies.io/" target="_blank" rel="noopener noreferrer">Podies</a></span>
               </div>
             </div>
           </div>

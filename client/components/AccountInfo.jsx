@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserDropDown from './UserDropDown';
 
 class Accountinfo extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showDropDown: false,
@@ -48,13 +48,17 @@ class Accountinfo extends Component {
         </div>
       </div>
     );
-	}
+  }
 }
 
 Accountinfo.propTypes = {
   userName: React.PropTypes.string.isRequired,
-  photo: React.PropTypes.string.isRequired,
+  photo: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
+};
+
+Accountinfo.defaultProps = {
+  photo: '',
 };
 
 export default Accountinfo;

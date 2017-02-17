@@ -73,6 +73,12 @@ Review.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
+Review.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  userQuestions: React.PropTypes.shape().isRequired,
+  activeUser: React.PropTypes.shape().isRequired,
+};
+
 function mapStateToProps(store) {
   return store;
 }

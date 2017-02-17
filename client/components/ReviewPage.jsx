@@ -12,13 +12,13 @@ const Dashboard = () => {
       <div className="grid">
         <div className="row">
           <div className="col-xs-12 dashboard-wrapper">
-           <Review />
+            <Review />
           </div>
         </div>
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;
