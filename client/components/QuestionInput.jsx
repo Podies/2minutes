@@ -49,7 +49,7 @@ class QuestionInput extends Component {
               this.props.showCrossButton ?
                 <div onClick={this.props.closeAddQuestion}>XX</div>
                 :
-                ''
+                null
             }
             <input type="text" className="question" name="name" ref={(c) => { this.question = c; }} placeholder="Eg.Talk to family members every week." />
             <div className="expected-ans">
@@ -78,5 +78,11 @@ class QuestionInput extends Component {
   }
 }
 
+QuestionInput.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  activeUser: React.PropTypes.shape().isRequired,
+  showCrossButton: React.PropTypes.func,
+  closeAddQuestion: React.PropTypes.func,
+};
 
 export default QuestionInput;

@@ -17,10 +17,9 @@ class Review extends Component {
 
   componentWillMount() {
     if (this.props.activeUser) {
-      this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
-    } else {
-      return this.context.router.push('/');
+      return this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
     }
+    return this.context.router.push('/');
   }
 
   showAddQuestion() {
@@ -48,7 +47,7 @@ class Review extends Component {
                     <QuestionInput
                       activeUser={this.props.activeUser}
                       dispatch={this.props.dispatch}
-                      showCrossButton={true}
+                      showCrossButton
                       closeAddQuestion={this.closeAddQuestion}
                     />
                   :

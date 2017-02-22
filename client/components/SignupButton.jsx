@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Signupbutton = (props) => {
   return (
     <div className="col-xs-10">

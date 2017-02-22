@@ -10,9 +10,8 @@ class Questions extends Component {
   componentWillMount() {
     if (this.props.activeUser) {
       this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
-    } else {
-      return this.context.router.push('/');
     }
+    return this.context.router.push('/');
   }
 
   render() {
