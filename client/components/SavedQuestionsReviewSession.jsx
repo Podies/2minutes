@@ -3,18 +3,24 @@ import ExpandedView from './ExpandedView';
 import ListView from './ListView';
 
 class SavedQuestionsReviewSession extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      expandedViewId: '0',
+      expandedViewId: '',
     };
     this.handleView = this.handleView.bind(this);
+    this.answerAdded = this.answerAdded.bind(this);
   }
+
   handleView(index) {
-    this.setState({
-      expandedViewId: index,
-    });
+    this.setState({ expandedViewId: index });
+    this.props.closeAddQuestion();
   }
+
+  answerAdded() {
+    this.setState({ expandedViewId: false });
+  }
+
   render() {
     return (
       <div className="row">
@@ -22,14 +28,20 @@ class SavedQuestionsReviewSession extends Component {
           this.props.questions.length > 0 ?
             this.props.questions.map((question, i) => {
               return (
-                this.state.expandedViewId == i ?
+                this.state.expandedViewId === i && !this.props.showAddQuestion ?
                   <ExpandedView
-                    key={i}
+                    key={question._id}
                     question={question}
                     dispatch={this.props.dispatch}
-                  />       
+                    answerAdded={this.answerAdded}
+                  />
                 :
-                  <ListView key={i} index={i} question={question} handleView={this.handleView} />
+                  <ListView
+                    key={question._id}
+                    index={i}
+                    question={question}
+                    handleView={this.handleView}
+                  />
               );
             })
           :
@@ -38,7 +50,13 @@ class SavedQuestionsReviewSession extends Component {
       </div>
     );
   }
-};
+}
 
+SavedQuestionsReviewSession.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  closeAddQuestion: React.PropTypes.func.isRequired,
+  questions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  showAddQuestion: React.PropTypes.bool.isRequired,
+};
 
 export default SavedQuestionsReviewSession;

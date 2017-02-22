@@ -40,6 +40,43 @@ const changePassword = (data) => {
   };
 };
 
+const addAnswer = (questionId, answer) => {
+  return (dispatch) => {
+    return apiCalls.addAnswer(questionId, answer)
+    .then(
+      (res) => {
+        dispatch(actions.addAnswer(res.data));
+        return true;
+      },
+      (err) => {
+        return err.response;
+      },
+    );
+  };
+};
+
+const logoutUser = () => {
+  return (dispatch) => {
+    dispatch(actions.logoutUser());
+    return apiCalls.logout();
+  };
+};
+
+const deleteQuestion = (questionId) => {
+  return (dispatch) => {
+    return apiCalls.deleteQuestion(questionId)
+    .then(
+      (res) => {
+        dispatch(actions.deleteQuestion(res.data));
+        return true;
+      },
+      (err) => {
+        return false;
+      },
+    );
+  };
+};
+
 export {
-  fetchUserQuestionSet, addNewQuestion, changePassword,
+  fetchUserQuestionSet, addNewQuestion, changePassword, addAnswer, logoutUser, deleteQuestion
 };

@@ -1,7 +1,7 @@
 const defaultState = {
   questions: [],
   isLoading: true,
-}
+};
 
 function userQuestions(state = defaultState, action) {
   const copy = Object.assign({}, state);
@@ -12,6 +12,16 @@ function userQuestions(state = defaultState, action) {
       return copy;
     case 'ADDED_NEW_QUESTION':
       copy.questions.unshift(action.data);
+      copy.isLoading = false;
+      return copy;
+    case 'ADDED_ANSWER':
+      const index = copy.questions.findIndex((question) => {
+        return question._id == action.data.question._id;
+      });
+      copy.questions[index].answers = action.data.question.answers;
+      return copy;
+    case 'DELETE_QUESTION':
+      copy.questions = action.data.questionSet.questions;
       copy.isLoading = false;
       return copy;
     default:

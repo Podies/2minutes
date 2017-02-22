@@ -16,10 +16,10 @@ class App extends Component {
       <div>
         {this.props.children}
         {
-          this.props.modals.type == 'login' ? 
-          <SignupLoginModal hideModal={this.hideModal}/>
+          this.props.modals.type === 'login' ?
+            <SignupLoginModal hideModal={this.hideModal} />
           :
-          null
+            null
         }
       </div>
     );
@@ -28,10 +28,12 @@ class App extends Component {
 
 function mapStateToProps(store) {
   return store;
-};
+}
 
 App.propTypes = {
-  children: React.PropTypes.node,
+  children: React.PropTypes.node.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
+  modals: React.PropTypes.shape().isRequired,
 };
 
 export default connect(mapStateToProps)(App);

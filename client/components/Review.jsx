@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
-import * as api from '../actions/apiCalls';
-import QuestionInput from './QuestionInput';
 import { connect } from 'react-redux';
+import QuestionInput from './QuestionInput';
 import * as actionCreator from '../actions/index';
-import ExpandedView from './ExpandedView';
 import UserGreetingReviewSession from './UserGreetingReviewSession';
 import SavedQuestionsReviewSession from './SavedQuestionsReviewSession';
 
 class Review extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showAddQuestion: false,
     };
     this.showAddQuestion = this.showAddQuestion.bind(this);
+    this.closeAddQuestion = this.closeAddQuestion.bind(this);
   }
 
   componentWillMount() {
     if (this.props.activeUser) {
-      this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
-    } else {
-      return this.context.router.push('/');
+      return this.props.dispatch(actionCreator.fetchUserQuestionSet(this.props.activeUser._id));
     }
+    return this.context.router.push('/');
   }
 
-  showAddQuestion(e) {
-    e.preventDefault();
-    this.setState({ showAddQuestion: !this.state.showAddQuestion });
+  showAddQuestion() {
+    this.setState({ showAddQuestion: true });
+  }
+
+  closeAddQuestion() {
+    this.setState({ showAddQuestion: false });
   }
 
   render() {
@@ -46,6 +47,8 @@ class Review extends Component {
                     <QuestionInput
                       activeUser={this.props.activeUser}
                       dispatch={this.props.dispatch}
+                      showCrossButton
+                      closeAddQuestion={this.closeAddQuestion}
                     />
                   :
                     null
@@ -55,6 +58,7 @@ class Review extends Component {
                 questions={this.props.userQuestions.questions}
                 showAddQuestion={this.state.showAddQuestion}
                 dispatch={this.props.dispatch}
+                closeAddQuestion={this.closeAddQuestion}
               />
             </div>
           </div>
@@ -66,6 +70,12 @@ class Review extends Component {
 
 Review.contextTypes = {
   router: React.PropTypes.object.isRequired,
+};
+
+Review.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  userQuestions: React.PropTypes.shape().isRequired,
+  activeUser: React.PropTypes.shape().isRequired,
 };
 
 function mapStateToProps(store) {
