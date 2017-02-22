@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
       <div className="grid">
         <div className="row">

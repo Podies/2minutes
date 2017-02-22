@@ -470,6 +470,9 @@ header {
 
 .extended-footer {
 	background-color: $color-7;
+	position: absolute;
+	bottom:0;
+	width: 100%;
 	.footer {
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -1193,6 +1196,16 @@ header {
 		background-color: white;
 		box-shadow: 0 20px 30px -8px rgba(black, 0.2), 0 -1px 4px rgba(black,0.2);
 	}
+}
+
+.my-stats-container {
+	margin-top: 2em;
+	border-top: 1px solid $color-7;
+}
+
+.daily-stats, .weekly-stats, .weekly-individual-question-progress {
+	background-color: $color-7;
+	padding: 4em;
 }
 
 /* =======================================================================================*/

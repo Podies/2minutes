@@ -54,7 +54,7 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Header />
         <div className="extended-profile-section">
           <div className="grid">
