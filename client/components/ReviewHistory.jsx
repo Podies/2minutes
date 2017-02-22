@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 const ReviewHistory = () => {
 	return(
-		<div>
+		<div className="container">
 		  <Header/>
 		  <div className="grid">
 		    <div className="row">
@@ -469,8 +469,35 @@ const ReviewHistory = () => {
 					  </div>
 				  </div>
 			  </div>
+        <div className="my-stats-container">
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="col-xs-4">
+                <div className="col">
+                  <div className="daily-stats">
+                    <p>Daily Stats Container</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xs-8">
+                <div className="col">
+                  <div className="weekly-stats">
+                    <p>Weekly Stats Container</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xs-12">
+              <div className="col">
+                <div className="weekly-individual-question-progress">
+                  <p>Weekly Individual Questions Report</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 		  </div>
-		  <Footer/>
+		  <Footer />
 		</div>
 	)
 }
