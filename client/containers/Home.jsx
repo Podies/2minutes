@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
-import SignupLoginModal from '../components/SignupLoginModal';
 import Landing from '../components/Landing';
 import Dashboard from '../components/Dashboard';
+import ReviewPage from '../components/ReviewPage';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
-        {!this.props.activeUser ? 
-          <Landing />
-        :
-          <Dashboard />
+        {
+          !this.props.activeUser ?
+            <Landing />
+          :
+            !this.props.userQuestions ?
+              <Dashboard />
+            :
+              <ReviewPage />
         }
       </div>
     );
   }
 }
 
+Home.propTypes = {
+  activeUser: React.PropTypes.shape(),
+  userQuestions: React.PropTypes.shape(),
+};
+
+Home.defaultProps = {
+  activeUser: null,
+  userQuestions: null,
+};
+
 function mapStateToProps(store) {
   return store;
-};
+}
 
 export default connect(mapStateToProps)(Home);

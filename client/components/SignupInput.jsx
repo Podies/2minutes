@@ -2,7 +2,6 @@ import React from 'react';
 import validator from 'validator';
 
 const SignupInput = (props) => {
-
   let name = '';
   let email = '';
   let password = '';
@@ -16,9 +15,9 @@ const SignupInput = (props) => {
       return props.handleSignupError('Invalid Email');
     }
     if (password.value.length < 8) {
-      return props.handleSignupError('Password length should be more then 8 characters')
+      return props.handleSignupError('Password length should be more then 8 characters');
     }
-    props.handleSignup({ name: name.value, email: email.value, password: password.value});
+    return props.handleSignup({ name: name.value, email: email.value, password: password.value });
   };
 
   return (
@@ -78,6 +77,14 @@ const SignupInput = (props) => {
       </div>
     </div>
   );
+};
+
+SignupInput.propTypes = {
+  successSignup: React.PropTypes.bool,
+};
+
+SignupInput.defaultProps = {
+  successSignup: false,
 };
 
 export default SignupInput;

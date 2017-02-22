@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LoginInput from './LoginInput';
@@ -61,7 +61,7 @@ class SignupLoginModal extends Component {
     axios.post('/users/signup', data).then((res) => {
       this.setState({ successSignup: true });
     }).catch((err) => {
-      this.setState({ signupError: err.response.data});
+      this.setState({ signupError: err.response.data });
     });
   }
 
@@ -80,7 +80,7 @@ class SignupLoginModal extends Component {
                 <span href="" className="close-btn" onClick={this.props.hideModal}>✖</span>
               </div>
               {
-                this.state.showComponent == 'login' ?
+                this.state.showComponent === 'login' ?
                   <LoginInput
                     showForgotPassword={this.showForgotPassword}
                     handleLoginError={this.handleLoginError}
@@ -102,7 +102,7 @@ class SignupLoginModal extends Component {
                   null
               }
               {
-                this.state.showComponent == 'forgot' ?
+                this.state.showComponent === 'forgot' ?
                   <ForgotPassword
                     handleForgotPasswordError={this.handleForgotPasswordError}
                     forgotPasswordError={this.state.forgotPasswordError}
@@ -117,5 +117,10 @@ class SignupLoginModal extends Component {
     );
   }
 }
+
+SignupLoginModal.propTypes = {
+  hideModal: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect()(SignupLoginModal);

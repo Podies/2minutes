@@ -76,8 +76,12 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  activeUser: React.PropTypes.shape().isRequired,
+  activeUser: React.PropTypes.shape(),
   dispatch: React.PropTypes.func.isRequired,
+};
+
+Header.defaultProps = {
+  activeUser: null,
 };
 
 function mapStateToProps(state) {

@@ -27,11 +27,11 @@ const ListView = (props) => {
   return (
     <div className="col-xs-12" >
       <div className="col-xs-1" />
-        <div className="col-xs-10 saved-question" onClick={() => props.handleView(props.index)}>
-          <div className="col">
-            <h1 className={checkIfAnswered() ? 'question-heading answered' : 'question-heading'}>{props.question.name}</h1>
-          </div>
+      <div className="col-xs-10 saved-question" onClick={() => props.handleView(props.index)}>
+        <div className="col">
+          <h1 className={checkIfAnswered() ? 'question-heading answered' : 'question-heading'}>{props.question.name}</h1>
         </div>
+      </div>
       <div className="col-xs-1" />
     </div>
   );

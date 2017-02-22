@@ -30,14 +30,14 @@ class SavedQuestionsReviewSession extends Component {
               return (
                 this.state.expandedViewId === i && !this.props.showAddQuestion ?
                   <ExpandedView
-                    key={i}
+                    key={question._id}
                     question={question}
                     dispatch={this.props.dispatch}
                     answerAdded={this.answerAdded}
                   />
                 :
                   <ListView
-                    key={i}
+                    key={question._id}
                     index={i}
                     question={question}
                     handleView={this.handleView}

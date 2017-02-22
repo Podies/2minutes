@@ -7,26 +7,26 @@ module.exports = {
   noInfo: false,
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    path.resolve(__dirname, 'client/index')
+    path.resolve(__dirname, 'client/index'),
   ],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'client'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   ],
   resolve: {
-    extensions: [ '', '.js','.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
     loaders: [
-      {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']}
-    ]
-  }
-}
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+      { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
+    ],
+  },
+};
